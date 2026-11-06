@@ -86,6 +86,20 @@ struct RepositoryTests {
     #expect(reasons == [.release, .soc, .root])
   }
 
+  @Test func resolvesRelativeAddresses() throws {
+    let json = """
+      {"packages":[{"id":"a","title":"A","manifestUrl":"a/manifest.json"},
+      {"id":"b","title":"B","manifest":{"id":"b","version":"1.0.0","ipkUrl":"b_1.0.0_all.ipk"}}]}
+      """
+    let page = try JSONDecoder().decode(RepositoryPage.self, from: Data(json.utf8))
+    let base = URL(string: "https://example.com/repo/apps.json")!
+    let items = page.packages.map { $0.resolved(against: base) }
+    #expect(items[0].manifestUrl == "https://example.com/repo/a/manifest.json")
+    #expect(items[1].manifest?.ipkUrl == "https://example.com/repo/b_1.0.0_all.ipk")
+    let absolute = PackageManifest(id: "c", version: "1", ipkUrl: "https://cdn.example.com/c.ipk")
+    #expect(absolute.resolved(against: base).ipkUrl == "https://cdn.example.com/c.ipk")
+  }
+
   @Test func findsNextPages() throws {
     let source = RepositorySource.nonFree
     let numbered = try JSONDecoder().decode(

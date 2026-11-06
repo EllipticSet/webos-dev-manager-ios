@@ -18,6 +18,8 @@ struct RepositoryItem: Identifiable, Decodable, Hashable, Sendable {
     item.fullDescriptionUrl = fullDescriptionUrl.flatMap {
       URL(string: $0, relativeTo: base)?.absoluteString
     }
+    item.manifestUrl = manifestUrl.flatMap { URL(string: $0, relativeTo: base)?.absoluteString }
+    item.manifest = manifest?.resolved(against: base)
     return item
   }
 
@@ -59,6 +61,13 @@ struct PackageManifest: Decodable, Hashable, Sendable {
   var sourceUrl: String?
   var appDescription: String?
   var rootRequired: RootRequirement?
+
+  /// Makes the package address absolute: repositories can give it relative to the manifest.
+  func resolved(against base: URL) -> PackageManifest {
+    var manifest = self
+    if let url = URL(string: ipkUrl, relativeTo: base) { manifest.ipkUrl = url.absoluteString }
+    return manifest
+  }
 
   func hasUpdate(over installed: String?) -> Bool {
     guard let installed, let available = PackageVersion(version),

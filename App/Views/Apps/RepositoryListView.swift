@@ -115,7 +115,13 @@ struct RepositoryListView: View {
       // The repositories may have changed while the page loaded.
       guard index < feeds.count, feeds[index].source == source else { return }
       feeds[index].items.append(contentsOf: page.packages)
-      feeds[index].nextURL = page.nextURL(after: url, in: source)
+      feeds[index].visited.insert(url)
+      feeds[index].nextURL = page.nextURL(after: url, in: source).flatMap { next in
+        // A repository whose pages link back to each other would otherwise load forever.
+        let feed = feeds[index]
+        let isNew = !feed.visited.contains(next)
+        return isNew && feed.visited.count < RepositoryClient.maximumPages ? next : nil
+      }
     } catch is CancellationError {
     } catch let error as URLError where error.code == .cancelled {
     } catch {
@@ -130,6 +136,7 @@ private struct RepositoryFeed: Identifiable {
   var source: RepositorySource
   var items: [RepositoryItem] = []
   var nextURL: URL?
+  var visited: Set<URL> = []
   var errorMessage: String?
 
   var id: URL { source.id }

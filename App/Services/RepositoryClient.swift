@@ -4,12 +4,31 @@ import Foundation
 struct RepositoryClient: Sendable {
   private static let base = URL(string: "https://repo.webosbrew.org/api/")!
   /// Guards against a repository whose pages link back to each other.
-  private static let maximumPages = 50
+  static let maximumPages = 50
 
   func page(at url: URL) async throws -> RepositoryPage {
     var page: RepositoryPage = try await fetch(url)
-    page.packages = page.packages.map { $0.resolved(against: url) }
+    page.packages = await withManifests(page.packages.map { $0.resolved(against: url) })
     return page
+  }
+
+  /// Repositories can link an app's manifest instead of including it, and without it the app can't
+  /// be installed. An app whose manifest can't be loaded is still listed.
+  private func withManifests(_ items: [RepositoryItem]) async -> [RepositoryItem] {
+    await withTaskGroup(of: (Int, PackageManifest?).self) { group in
+      for (index, item) in items.enumerated() where item.manifest == nil {
+        guard let url = item.manifestUrl.flatMap(URL.init(string:)) else { continue }
+        group.addTask {
+          let manifest: PackageManifest? = try? await fetch(url)
+          return (index, manifest?.resolved(against: url))
+        }
+      }
+      var items = items
+      for await (index, manifest) in group {
+        items[index].manifest = manifest
+      }
+      return items
+    }
   }
 
   /// The latest release of an app in the official repository.
@@ -18,7 +37,7 @@ struct RepositoryClient: Sendable {
       throw DeviceError.invalidResponse
     }
     let item: RepositoryItem = try await fetch(url)
-    return item.resolved(against: url)
+    return await withManifests([item.resolved(against: url)])[0]
   }
 
   /// Every app in the repositories, by ID. An app in more than one keeps the entry of the first,
@@ -43,13 +62,12 @@ struct RepositoryClient: Sendable {
 
   private func allItems(in source: RepositorySource) async throws -> [RepositoryItem] {
     var items: [RepositoryItem] = []
+    var visited: Set<URL> = []
     var next: URL? = source.url
-    var count = 0
-    while let url = next, count < Self.maximumPages {
+    while let url = next, visited.count < Self.maximumPages, visited.insert(url).inserted {
       let page = try await page(at: url)
       items += page.packages
       next = page.nextURL(after: url, in: source)
-      count += 1
     }
     return items
   }
