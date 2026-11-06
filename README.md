@@ -45,7 +45,7 @@ There are two ways to get the app on your iPhone. Both are free and need only an
 
 | | Sideload the IPA | Build with Xcode |
 | --- | --- | --- |
-| You need | A Mac or Windows PC and a sideloading tool | A Mac with Xcode 26 or later |
+| You need | A Mac or Windows PC and a sideloading tool | A Mac with Xcode 27 or later |
 | Best for | Using the app | Changing the code |
 | Updates | Download the new IPA from Releases | `git pull` and run again |
 
@@ -101,7 +101,7 @@ shasum -a 256 Dev-Manager.ipa
    git clone https://github.com/EllipticSet/webos-dev-manager-ios.git
    ```
 
-2. Open `Dev Manager.xcodeproj` in Xcode 26 or later.
+2. Open `Dev Manager.xcodeproj` in Xcode 27 or later.
 3. Select the **Dev Manager** target, open **Signing & Capabilities** and choose your own team. If the bundle identifier is already taken, change it to something unique.
 4. Select your iPhone or a simulator and run the **Dev Manager** scheme.
 
@@ -129,7 +129,7 @@ The private keys in `Tests/TestKeys.swift` are test fixtures used only by the un
 
 ### Automatic builds
 
-[`.github/workflows/build-ipa.yml`](.github/workflows/build-ipa.yml) builds the app on a macOS runner without code signing, packages `Payload/Dev Manager.app` into `Dev-Manager.ipa` and publishes it with its SHA-256 checksum as a new release. It can also be started manually from the **Actions** tab.
+[`.github/workflows/build-ipa.yml`](.github/workflows/build-ipa.yml) builds the app on the GitHub `xcode-27` runner (the JSON project format needs Xcode 27) without code signing, packages `Payload/Dev Manager.app` into `Dev-Manager.ipa` and publishes it with its SHA-256 checksum as a new release. It can also be started manually from the **Actions** tab.
 
 ## Privacy
 
