@@ -99,12 +99,19 @@ struct RepositoryListView: View {
     feeds[index].errorMessage = nil
   }
 
+  /// Whether the feed a page was loaded for is still shown: the repositories may have changed, or
+  /// the list may have been refreshed, while the page loaded.
+  private func isCurrent(_ generation: UUID, at index: Int) -> Bool {
+    index < feeds.count && feeds[index].generation == generation
+  }
+
   /// Loads the repositories one page at a time, in order.
   private func loadNext() async {
     guard !isLoading, let index = feeds.firstIndex(where: \.isPending),
       let url = feeds[index].nextURL
     else { return }
     let source = feeds[index].source
+    let generation = feeds[index].generation
     isLoading = true
     defer {
       isLoading = false
@@ -112,8 +119,7 @@ struct RepositoryListView: View {
     }
     do {
       let page = try await RepositoryClient().page(at: url)
-      // The repositories may have changed while the page loaded.
-      guard index < feeds.count, feeds[index].source == source else { return }
+      guard isCurrent(generation, at: index) else { return }
       feeds[index].items.append(contentsOf: page.packages)
       feeds[index].visited.insert(url)
       feeds[index].nextURL = page.nextURL(after: url, in: source).flatMap { next in
@@ -125,7 +131,7 @@ struct RepositoryListView: View {
     } catch is CancellationError {
     } catch let error as URLError where error.code == .cancelled {
     } catch {
-      guard index < feeds.count, feeds[index].source == source else { return }
+      guard isCurrent(generation, at: index) else { return }
       feeds[index].errorMessage = DeviceError.message(for: error)
     }
   }
@@ -138,6 +144,8 @@ private struct RepositoryFeed: Identifiable {
   var nextURL: URL?
   var visited: Set<URL> = []
   var errorMessage: String?
+  /// Changes when the list is loaded again, so a page that was still loading is discarded.
+  var generation = UUID()
 
   var id: URL { source.id }
   var isPending: Bool { nextURL != nil && errorMessage == nil }
