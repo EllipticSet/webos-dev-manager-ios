@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="App/Assets.xcassets/AppIcon.appiconset/Icon.png" alt="Dev Manager icon" width="120">
+<img src="docs/images/icon.png" alt="Dev Manager icon" width="120">
 
 <h1>Dev Manager for webOS TV</h1>
 
@@ -117,7 +117,7 @@ The project was created with Bitrig. Unit tests live in the **Dev Manager Tests*
 
 The app version follows `MAJOR.MINOR` from the Xcode project. Each automatic build adds a build number, so releases are tagged `v<version>-build.<number>`, for example `v1.3-build.4`. The build number is also the app's `CFBundleVersion`, so a newer IPA always installs over an older one.
 
-Changes that touch only documentation or `Tools/` don't produce a new build.
+Changes that touch only documentation, `docs/` or `Tools/` don't produce a new build.
 
 ## Development
 
