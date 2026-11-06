@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.1
+
+### Changed
+- Release notes on GitHub now include the changes of the version, taken from this changelog.
+
+### Fixed
+- Update checks keep the apps found on a repository's earlier pages when one of its later pages can't be loaded, instead of leaving out the whole repository.
+- Update checks load linked manifests only for the apps installed on the TV, so large repositories no longer slow them down with requests for every app.
+
 ## 1.4
 
 ### Added

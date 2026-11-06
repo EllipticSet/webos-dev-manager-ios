@@ -91,11 +91,25 @@ jobs:
         run: |
           SHORT_SHA=${GITHUB_SHA::7}
           SUBJECT=$(git log -1 --format=%s "$GITHUB_SHA")
+          # This version's section of CHANGELOG.md, from its "## <version>" heading to the next one.
+          CHANGES=$(awk -v heading="## $MARKETING" '
+            $0 == heading { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md 2>/dev/null | sed -e '/./,$!d' -e 's/^### /#### /')
           {
             echo "Automatic build of commit [\`$SHORT_SHA\`]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$GITHUB_SHA): $SUBJECT"
             echo
             echo "**Version** $MARKETING (build $BUILD)"
             echo
+            if [ -n "$CHANGES" ]; then
+              echo "### What's new"
+              echo
+              echo "$CHANGES"
+              echo
+            else
+              echo "::warning::No \"## $MARKETING\" section in CHANGELOG.md" >&2
+            fi
             echo "\`$IPA_NAME\` is unsigned: sign and install it with AltStore, SideStore or Sideloadly."
             echo "See [Installation](https://github.com/$GITHUB_REPOSITORY#installation) in the README."
             echo

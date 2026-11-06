@@ -7,8 +7,14 @@ struct RepositoryClient: Sendable {
   static let maximumPages = 50
 
   func page(at url: URL) async throws -> RepositoryPage {
+    var page = try await pageWithoutManifests(at: url)
+    page.packages = await withManifests(page.packages)
+    return page
+  }
+
+  private func pageWithoutManifests(at url: URL) async throws -> RepositoryPage {
     var page: RepositoryPage = try await fetch(url)
-    page.packages = await withManifests(page.packages.map { $0.resolved(against: url) })
+    page.packages = page.packages.map { $0.resolved(against: url) }
     return page
   }
 
@@ -40,12 +46,15 @@ struct RepositoryClient: Sendable {
     return await withManifests([item.resolved(against: url)])[0]
   }
 
-  /// Every app in the repositories, by ID. An app in more than one keeps the entry of the first,
-  /// and repositories that can't be read are left out.
-  func catalog(from sources: [RepositorySource]) async -> [String: RepositoryItem] {
+  /// The apps with `appIDs` in the repositories, by ID. An app in more than one keeps the entry of
+  /// the first. Only their manifests are loaded, and a repository that can't be read, in full or
+  /// from one of its pages on, contributes the apps of the pages read before.
+  func catalog(from sources: [RepositorySource], appIDs: Set<String>) async
+    -> [String: RepositoryItem]
+  {
     let lists = await withTaskGroup(of: (Int, [RepositoryItem]).self) { group in
       for (index, source) in sources.enumerated() {
-        group.addTask { (index, (try? await allItems(in: source)) ?? []) }
+        group.addTask { (index, await allItems(in: source)) }
       }
       var lists: [Int: [RepositoryItem]] = [:]
       for await (index, items) in group { lists[index] = items }
@@ -53,19 +62,21 @@ struct RepositoryClient: Sendable {
     }
     var items: [String: RepositoryItem] = [:]
     for index in sources.indices {
-      for item in lists[index] ?? [] where items[item.id] == nil {
+      for item in lists[index] ?? [] where appIDs.contains(item.id) && items[item.id] == nil {
         items[item.id] = item
       }
     }
-    return items
+    let resolved = await withManifests(Array(items.values))
+    return Dictionary(uniqueKeysWithValues: resolved.map { ($0.id, $0) })
   }
 
-  private func allItems(in source: RepositorySource) async throws -> [RepositoryItem] {
+  /// The apps on every page of `source` up to the first that can't be read, without manifests.
+  private func allItems(in source: RepositorySource) async -> [RepositoryItem] {
     var items: [RepositoryItem] = []
     var visited: Set<URL> = []
     var next: URL? = source.url
     while let url = next, visited.count < Self.maximumPages, visited.insert(url).inserted {
-      let page = try await page(at: url)
+      guard let page = try? await pageWithoutManifests(at: url) else { break }
       items += page.packages
       next = page.nextURL(after: url, in: source)
     }
