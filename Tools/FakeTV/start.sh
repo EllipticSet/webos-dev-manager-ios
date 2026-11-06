@@ -28,6 +28,8 @@ sleep 60
 MON
 chmod +x bin/*
 printf 'abc123FAKEtoken' > var/luna/preferences/devmode_enabled
+rm -f var/luna/preferences/webosbrew_*(N) reboot.log
+printf 1 > var/luna/preferences/webosbrew_sshd_enabled
 echo 'ciao dalla tv' > home/nota.txt
 for i in 1 2 3 4 5; do echo "2026-10-31T01:0$i:00.000000Z [12.$i] user.err proc$i [1:2] ctx MSG {\"a\":1} syslog riga $i"; done > var/log/messages
 printf 'Segmentation fault\nbacktrace: main+0x12\n' | gzip > "tmpvar/log/reports/librdx/x$(printf '\001')usr$(printf '\001')palm$(printf '\001')applications$(printf '\001')com.example.demo$(printf '\001')bin$(printf '\001')main____main.123.456.gz"

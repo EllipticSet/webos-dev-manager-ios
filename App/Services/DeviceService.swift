@@ -64,6 +64,41 @@ struct DeviceService: Sendable {
     )
   }
 
+  /// Changes a root setting, then reads the settings back. Needs Homebrew Channel to have root.
+  func setHomebrewSetting(_ setting: HomebrewSetting, isOn: Bool) async throws
+    -> HomebrewConfiguration
+  {
+    try await luna.call(
+      "luna://org.webosbrew.hbchannel.service/setConfiguration",
+      parameters: [setting.key: setting.flag(isOn: isOn)])
+    return try await homebrewConfiguration()
+  }
+
+  /// Restarts the TV through Homebrew Channel, which applies changed root settings.
+  func restartWithHomebrew() async throws {
+    do {
+      try await luna.call("luna://org.webosbrew.hbchannel.service/reboot")
+    } catch let error as DeviceError {
+      switch error {
+      case .lunaResponse, .lunaUnknownMethod, .lunaServiceNotFound, .notWebOS: throw error
+      // The connection can drop before the reply arrives, as the TV shuts down.
+      default: return
+      }
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      return
+    }
+  }
+
+  /// Opens Homebrew Channel on the TV with its Add Repository dialog filled in, for the user to
+  /// confirm with the remote. It's the only way other apps can change its list.
+  func offerRepositoryToHomebrew(_ url: URL) async throws {
+    try await launch(
+      appID: InstalledApp.homebrewChannelID,
+      parameters: ["launchMode": "addRepository", "url": url.absoluteString])
+  }
+
   func extendDevMode() async throws {
     try await launch(appID: "com.palmdts.devmode", parameters: ["extend": true])
   }

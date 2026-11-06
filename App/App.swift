@@ -8,6 +8,7 @@ struct DevManagerApp: App {
   @State private var navigator = AppNavigator()
   @State private var settings = AppSettings()
   @State private var lock = AppLock()
+  @State private var repositories = RepositoryStore()
 
   var body: some Scene {
     WindowGroup {
@@ -18,6 +19,7 @@ struct DevManagerApp: App {
         .environment(navigator)
         .environment(settings)
         .environment(lock)
+        .environment(repositories)
     }
   }
 }

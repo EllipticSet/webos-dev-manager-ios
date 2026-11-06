@@ -1,0 +1,17 @@
+# Changelog
+
+## 1.4
+
+### Added
+- **Repositories**: browse apps from the Non-Free Software repository and from your own repositories, next to the official webOS Homebrew catalog. Turn each one on or off from the new Repositories screen in Apps › Homebrew.
+- **Add to TV**: offer a custom repository to Homebrew Channel, which opens on the TV with the address filled in for you to confirm with the remote.
+- **Root Settings**: on TVs rooted with Homebrew Channel, turn Telnet, SSH Server, Block System Updates and Failsafe Mode on or off, and restart the TV to apply the changes (Info › Homebrew Channel).
+
+### Changed
+- Updates for installed apps are looked up in every repository you turned on.
+- App icons are saved on the iPhone, so lists show them at once and offline. Settings › Clear Cache now removes icons and descriptions.
+- The catalog reads repositories that publish all their apps on one page or that link their pages with `nextUrl`.
+
+## 1.3
+
+- First public release.

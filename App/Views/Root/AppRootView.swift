@@ -69,6 +69,7 @@ struct AppRootView: View {
     store.removeAll()
     certificates.removeAll()
     TemporaryFiles.removeAll()
+    IconCache.clear()
     lock.removePasscode()
   }
 }

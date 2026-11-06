@@ -107,11 +107,21 @@ enum IncompatibleReason: String, Hashable, Sendable {
 struct RepositoryPage: Decodable, Sendable {
   struct Paging: Decodable, Sendable {
     var page: Int
-    var count: Int
     var maxPage: Int
-    var itemsTotal: Int
+    var nextUrl: String?
   }
 
-  var paging: Paging
+  /// Missing from repositories that publish all their apps on one page.
+  var paging: Paging?
   var packages: [RepositoryItem]
+
+  /// The page after this one, at `url`. Repositories link to it, or else number their pages from
+  /// the first, such as `apps/2.json` next to `apps.json`.
+  func nextURL(after url: URL, in source: RepositorySource) -> URL? {
+    guard let paging, paging.page < paging.maxPage else { return nil }
+    if let next = paging.nextUrl {
+      return URL(string: next, relativeTo: url)?.absoluteURL
+    }
+    return source.url.deletingPathExtension().appendingPathComponent("\(paging.page + 1).json")
+  }
 }
