@@ -112,7 +112,7 @@ final class AppsModel {
       let apps = try await service.installedApps()
       installed = .loaded(apps)
       let ids = Set(apps.map(\.id))
-      updates = await RepositoryClient().catalog(from: sources).filter { ids.contains($0.key) }
+      updates = await RepositoryClient().catalog(from: sources, appIDs: ids)
       details = try? await service.details()
       homebrew = try? await service.homebrewConfiguration()
     } catch is CancellationError {
