@@ -11,6 +11,13 @@
 - Updates for installed apps are looked up in every repository you turned on.
 - App icons are saved on the iPhone, so lists show them at once and offline. Settings › Clear Cache now removes icons and descriptions.
 - The catalog reads repositories that publish all their apps on one page or that link their pages with `nextUrl`.
+- Apps from repositories that link their manifest with `manifestUrl` can be installed and updated, and relative manifest and IPK addresses are supported.
+- The project no longer sets a signing team, so local builds use your own.
+
+### Fixed
+- Restart TV reports connection and sign-in errors instead of showing the restart as done.
+- A repository whose pages link back to each other no longer loads forever: browsing stops at a page already loaded, or after 50 pages.
+- Pulling to refresh while a page is loading no longer mixes that page into the new list.
 
 ## 1.3
 
