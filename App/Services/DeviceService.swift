@@ -76,6 +76,9 @@ struct DeviceService: Sendable {
 
   /// Restarts the TV through Homebrew Channel, which applies changed root settings.
   func restartWithHomebrew() async throws {
+    // Signing in and reaching the service fail here, before the request is sent, so they're
+    // reported rather than taken for the TV shutting down.
+    _ = try await homebrewConfiguration()
     do {
       try await luna.call("luna://org.webosbrew.hbchannel.service/reboot")
     } catch let error as DeviceError {

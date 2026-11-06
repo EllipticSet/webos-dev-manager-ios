@@ -91,7 +91,6 @@
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
         "CODE_SIGN_IDENTITY": "iPhone Developer",
         "CURRENT_PROJECT_VERSION": "1",
-        "DEVELOPMENT_TEAM": "S6UL2JX862",
         "INFOPLIST_FILE": "App/Info.plist",
         "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
         "LD_RUNPATH_SEARCH_PATHS": [
