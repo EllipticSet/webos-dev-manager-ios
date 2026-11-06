@@ -1,0 +1,109 @@
+name: Build IPA
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+      - "LICENSE"
+      - "Tools/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-ipa
+  cancel-in-progress: false
+
+env:
+  PROJECT: Dev Manager.xcodeproj
+  SCHEME: Dev Manager
+  APP_NAME: Dev Manager
+  IPA_NAME: Dev-Manager.ipa
+
+jobs:
+  build:
+    # The project uses the JSON .xcproj format, which needs Xcode 27 or later.
+    # The xcode-27 image is the only GitHub-hosted runner that has it.
+    runs-on: xcode-27
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Read version
+        id: version
+        run: |
+          MARKETING_VERSION=$(xcodebuild -project "$PROJECT" -scheme "$SCHEME" -configuration Release \
+            -showBuildSettings 2>/dev/null | awk -F' = ' '/ MARKETING_VERSION = / { print $2; exit }')
+          if [ -z "$MARKETING_VERSION" ]; then
+            echo "::error::MARKETING_VERSION not found in the project"
+            exit 1
+          fi
+          BUILD_NUMBER=${{ github.run_number }}
+          echo "marketing=$MARKETING_VERSION" >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "tag=v$MARKETING_VERSION-build.$BUILD_NUMBER" >> "$GITHUB_OUTPUT"
+
+      - name: Build unsigned app
+        run: |
+          xcodebuild build \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath build \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
+            CURRENT_PROJECT_VERSION=${{ steps.version.outputs.build }} \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            > build.log 2>&1 || {
+              grep -E "error:" build.log | sort -u | head -n 50
+              tail -n 80 build.log
+              exit 1
+            }
+          tail -n 5 build.log
+
+      - name: Package IPA
+        run: |
+          APP_PATH="build/Build/Products/Release-iphoneos/$APP_NAME.app"
+          test -d "$APP_PATH" || { echo "::error::$APP_PATH not found"; exit 1; }
+          mkdir -p dist/Payload
+          cp -R "$APP_PATH" dist/Payload/
+          cd dist
+          zip -qry "$IPA_NAME" Payload
+          shasum -a 256 "$IPA_NAME" > "$IPA_NAME.sha256"
+          ls -lh "$IPA_NAME"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+          MARKETING: ${{ steps.version.outputs.marketing }}
+          BUILD: ${{ steps.version.outputs.build }}
+        run: |
+          SHORT_SHA=${GITHUB_SHA::7}
+          SUBJECT=$(git log -1 --format=%s "$GITHUB_SHA")
+          {
+            echo "Automatic build of commit [\`$SHORT_SHA\`]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$GITHUB_SHA): $SUBJECT"
+            echo
+            echo "**Version** $MARKETING (build $BUILD)"
+            echo
+            echo "\`$IPA_NAME\` is unsigned: sign and install it with AltStore, SideStore or Sideloadly."
+            echo "See [Installation](https://github.com/$GITHUB_REPOSITORY#installation) in the README."
+            echo
+            echo "SHA-256: \`$(cut -d' ' -f1 "dist/$IPA_NAME.sha256")\`"
+          } > notes.md
+          gh release create "$TAG" \
+            "dist/$IPA_NAME" \
+            "dist/$IPA_NAME.sha256" \
+            --target "$GITHUB_SHA" \
+            --title "Dev Manager $MARKETING (build $BUILD)" \
+            --notes-file notes.md \
+            --latest
