@@ -17,6 +17,15 @@ def out(value):
     print(json.dumps(value), flush=True)
 
 
+# Homebrew Channel keeps its root settings as flag files.
+FLAGS = {"telnetDisabled": "webosbrew_telnet_disabled", "failsafe": "webosbrew_failsafe",
+         "sshdEnabled": "webosbrew_sshd_enabled", "blockUpdates": "webosbrew_block_updates"}
+
+
+def flags():
+    return {name: os.path.exists(f"{T}/var/luna/preferences/{file}") for name, file in FLAGS.items()}
+
+
 if "getSystemInfo" in uri:
     out({"returnValue": True, "modelName": "OLED55FAKE", "firmwareVersion": "03.21.15",
          "sdkVersion": "6.3.0", "otaId": "HE_DTV_W22O_AFABATAA"})
@@ -27,8 +36,20 @@ elif "listApps" in uri:
 elif "applicationManager/launch" in uri:
     out({"returnValue": True, "id": params.get("id")})
 elif "hbchannel.service/getConfiguration" in uri:
-    out({"returnValue": True, "root": True} if user == "root" else
+    out({"returnValue": True, "root": True, **flags()} if user == "root" else
         {"returnValue": False, "errorText": "Service does not exist: org.webosbrew.hbchannel.service."})
+elif "hbchannel.service/setConfiguration" in uri:
+    for name, value in params.items():
+        if name in FLAGS:
+            path = f"{T}/var/luna/preferences/{FLAGS[name]}"
+            if value:
+                open(path, "w").write("1")
+            elif os.path.exists(path):
+                os.remove(path)
+    out({"returnValue": True, **{name: value for name, value in flags().items() if name in params}})
+elif "hbchannel.service/reboot" in uri:
+    open(T + "/reboot.log", "a").write(f"{time.ctime()}\n")
+    out({"returnValue": True})
 elif "hbchannel.service/install" in uri:
     for percent in (10, 50, 90):
         out({"returnValue": True, "statusText": "Installing", "progress": percent})

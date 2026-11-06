@@ -59,7 +59,7 @@
       "name": "Products",
       "children": [
         { "path": "<PRODUCTS>/Dev Manager Tests.xctest", "id": "391AD6FE9344AE8F19B21DC6", "index": false },
-        { "path": "<PRODUCTS>/Dev Manager.app", "id": "C78FFBE0C40297107B6A22A4", "index": false },
+        { "path": "<PRODUCTS>/Dev Manager.app", "id": "C78FFBE0C40297107B6A22A4", "type": "wrapper.application", "index": false },
       ],
     },
   ],
@@ -97,7 +97,7 @@
           "$(inherited)",
           "@executable_path/Frameworks",
         ],
-        "MARKETING_VERSION": "1.3",
+        "MARKETING_VERSION": "1.4",
         "PRODUCT_BUNDLE_IDENTIFIER": "org.bg.devmanagerios",
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "SDKROOT": "iphoneos",

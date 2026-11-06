@@ -1,5 +1,6 @@
 import Foundation
 import Testing
+import UIKit
 
 @testable import Dev_Manager
 
@@ -83,6 +84,65 @@ struct RepositoryTests {
       with: DeviceDetails(osVersion: "4.9.0", socName: "m16"),
       homebrew: HomebrewConfiguration(root: false))
     #expect(reasons == [.release, .soc, .root])
+  }
+
+  @Test func resolvesRelativeAddresses() throws {
+    let json = """
+      {"packages":[{"id":"a","title":"A","manifestUrl":"a/manifest.json"},
+      {"id":"b","title":"B","manifest":{"id":"b","version":"1.0.0","ipkUrl":"b_1.0.0_all.ipk"}}]}
+      """
+    let page = try JSONDecoder().decode(RepositoryPage.self, from: Data(json.utf8))
+    let base = URL(string: "https://example.com/repo/apps.json")!
+    let items = page.packages.map { $0.resolved(against: base) }
+    #expect(items[0].manifestUrl == "https://example.com/repo/a/manifest.json")
+    #expect(items[1].manifest?.ipkUrl == "https://example.com/repo/b_1.0.0_all.ipk")
+    let absolute = PackageManifest(id: "c", version: "1", ipkUrl: "https://cdn.example.com/c.ipk")
+    #expect(absolute.resolved(against: base).ipkUrl == "https://cdn.example.com/c.ipk")
+  }
+
+  @Test func findsNextPages() throws {
+    let source = RepositorySource.nonFree
+    let numbered = try JSONDecoder().decode(
+      RepositoryPage.self,
+      from: Data(#"{"paging":{"page":1,"maxPage":3},"packages":[]}"#.utf8))
+    #expect(
+      numbered.nextURL(after: source.url, in: source)?.absoluteString
+        == "https://repo.webosbrew.org/api/non-free/apps/2.json")
+    let linked = try JSONDecoder().decode(
+      RepositoryPage.self,
+      from: Data(#"{"paging":{"page":2,"maxPage":3,"nextUrl":"3.json"},"packages":[]}"#.utf8))
+    let second = URL(string: "https://repo.webosbrew.org/api/non-free/apps/2.json")!
+    #expect(
+      linked.nextURL(after: second, in: source)?.absoluteString
+        == "https://repo.webosbrew.org/api/non-free/apps/3.json")
+    let single = try JSONDecoder().decode(
+      RepositoryPage.self, from: Data(#"{"packages":[{"id":"a","title":"A"}]}"#.utf8))
+    #expect(single.packages.count == 1)
+    #expect(single.nextURL(after: source.url, in: source) == nil)
+  }
+
+  @Test(arguments: [
+    ("https://example.com/api/apps.json", "https://example.com/api/apps.json"),
+    ("  example.com/repo/  ", "https://example.com/repo/apps.json"),
+    ("http://192.168.1.2:8000", "http://192.168.1.2:8000/apps.json"),
+  ])
+  func readsRepositoryAddresses(text: String, expected: String) {
+    #expect(RepositorySource.customURL(from: text)?.absoluteString == expected)
+  }
+
+  @Test(arguments: ["", "ftp://example.com/apps.json", "https://"])
+  func rejectsRepositoryAddresses(text: String) {
+    #expect(RepositorySource.customURL(from: text) == nil)
+  }
+
+  @Test func mapsHomebrewSettings() {
+    let configuration = HomebrewConfiguration(
+      telnetDisabled: true, failsafe: false, sshdEnabled: true, blockUpdates: nil)
+    #expect(configuration.isOn(.telnet) == false)
+    #expect(configuration.isOn(.sshServer) == true)
+    #expect(configuration.isOn(.blockSystemUpdates) == nil)
+    #expect(HomebrewSetting.telnet.flag(isOn: true) == false)
+    #expect(HomebrewSetting.failsafeMode.flag(isOn: true) == true)
   }
 }
 
@@ -225,6 +285,33 @@ struct DescriptionCacheTests {
     DescriptionCache.clear()
     #expect(DescriptionCache.read(for: url) == nil)
     #expect(DescriptionCache.size() == 0)
+  }
+}
+
+struct IconCacheTests {
+  @Test func savesRefreshesOnceAndClears() throws {
+    let png = try #require(
+      UIGraphicsImageRenderer(size: CGSize(width: 4, height: 4)).image { context in
+        UIColor.red.setFill()
+        context.fill(CGRect(x: 0, y: 0, width: 4, height: 4))
+      }.pngData())
+    let device = UUID()
+    let key = IconCache.key(device: device, path: "/apps/a/icon.png")
+    IconCache.clear()
+    #expect(IconCache.image(for: key) == nil)
+    #expect(IconCache.needsRefresh(key))
+    #expect(IconCache.store(Data("not an image".utf8), for: key) == nil)
+    #expect(IconCache.size() == 0)
+    #expect(IconCache.store(png, for: key) != nil)
+    #expect(!IconCache.needsRefresh(key))
+    #expect(IconCache.image(for: key) != nil)
+    #expect(IconCache.size() == Int64(png.count))
+    // The same path on another TV is another icon.
+    #expect(IconCache.image(for: IconCache.key(device: UUID(), path: "/apps/a/icon.png")) == nil)
+    IconCache.clear()
+    #expect(IconCache.image(for: key) == nil)
+    #expect(IconCache.needsRefresh(key))
+    #expect(IconCache.size() == 0)
   }
 }
 

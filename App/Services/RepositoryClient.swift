@@ -1,40 +1,75 @@
 import Foundation
 
-/// Reads the public webOS Homebrew repository.
+/// Reads webOS Homebrew repositories, which publish their apps in pages of JSON.
 struct RepositoryClient: Sendable {
   private static let base = URL(string: "https://repo.webosbrew.org/api/")!
+  /// Guards against a repository whose pages link back to each other.
+  static let maximumPages = 50
 
-  /// Pages are numbered from 1, and the first has no number in its URL.
-  func page(_ number: Int) async throws -> RepositoryPage {
-    let path = number > 1 ? "apps/\(number).json" : "apps.json"
-    guard let url = URL(string: path, relativeTo: Self.base) else {
-      throw DeviceError.invalidResponse
-    }
+  func page(at url: URL) async throws -> RepositoryPage {
     var page: RepositoryPage = try await fetch(url)
-    page.packages = page.packages.map { $0.resolved(against: url) }
+    page.packages = await withManifests(page.packages.map { $0.resolved(against: url) })
     return page
   }
 
+  /// Repositories can link an app's manifest instead of including it, and without it the app can't
+  /// be installed. An app whose manifest can't be loaded is still listed.
+  private func withManifests(_ items: [RepositoryItem]) async -> [RepositoryItem] {
+    await withTaskGroup(of: (Int, PackageManifest?).self) { group in
+      for (index, item) in items.enumerated() where item.manifest == nil {
+        guard let url = item.manifestUrl.flatMap(URL.init(string:)) else { continue }
+        group.addTask {
+          let manifest: PackageManifest? = try? await fetch(url)
+          return (index, manifest?.resolved(against: url))
+        }
+      }
+      var items = items
+      for await (index, manifest) in group {
+        items[index].manifest = manifest
+      }
+      return items
+    }
+  }
+
+  /// The latest release of an app in the official repository.
   func latest(appID: String) async throws -> RepositoryItem {
     guard let url = URL(string: "apps/\(appID)/releases/latest.json", relativeTo: Self.base) else {
       throw DeviceError.invalidResponse
     }
     let item: RepositoryItem = try await fetch(url)
-    return item.resolved(against: url)
+    return await withManifests([item.resolved(against: url)])[0]
   }
 
-  /// Looks up many apps at once. Apps that aren't in the repository are left out.
-  func latest(appIDs: [String]) async -> [String: RepositoryItem] {
-    await withTaskGroup(of: RepositoryItem?.self) { group in
-      for id in appIDs {
-        group.addTask { try? await latest(appID: id) }
+  /// Every app in the repositories, by ID. An app in more than one keeps the entry of the first,
+  /// and repositories that can't be read are left out.
+  func catalog(from sources: [RepositorySource]) async -> [String: RepositoryItem] {
+    let lists = await withTaskGroup(of: (Int, [RepositoryItem]).self) { group in
+      for (index, source) in sources.enumerated() {
+        group.addTask { (index, (try? await allItems(in: source)) ?? []) }
       }
-      var items: [String: RepositoryItem] = [:]
-      for await item in group {
-        if let item { items[item.id] = item }
-      }
-      return items
+      var lists: [Int: [RepositoryItem]] = [:]
+      for await (index, items) in group { lists[index] = items }
+      return lists
     }
+    var items: [String: RepositoryItem] = [:]
+    for index in sources.indices {
+      for item in lists[index] ?? [] where items[item.id] == nil {
+        items[item.id] = item
+      }
+    }
+    return items
+  }
+
+  private func allItems(in source: RepositorySource) async throws -> [RepositoryItem] {
+    var items: [RepositoryItem] = []
+    var visited: Set<URL> = []
+    var next: URL? = source.url
+    while let url = next, visited.count < Self.maximumPages, visited.insert(url).inserted {
+      let page = try await page(at: url)
+      items += page.packages
+      next = page.nextURL(after: url, in: source)
+    }
+    return items
   }
 
   /// The HTML the repository publishes as an app's long description.

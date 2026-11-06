@@ -6,6 +6,7 @@ struct AppsView: View {
 
   @Environment(DeviceStore.self) private var store
   @Environment(OperationCenter.self) private var operations
+  @Environment(RepositoryStore.self) private var repositories
   @State private var section = AppsSection.installed
   @State private var model = AppsModel()
   @State private var isImporting = false
@@ -23,16 +24,29 @@ struct AppsView: View {
         }
       }
       .navigationTitle("Apps")
+      .navigationDestination(for: AppsDestination.self) { _ in
+        RepositoriesView(model: model, service: service)
+      }
       .toolbar {
         AppMenu()
-        ToolbarItem(placement: .primaryAction) {
+        ToolbarItemGroup(placement: .primaryAction) {
+          if section == .homebrew {
+            NavigationLink(value: AppsDestination.repositories) {
+              Label("Repositories", systemImage: "server.rack")
+            }
+          }
           Button("Install IPK", systemImage: "square.and.arrow.down") { isImporting = true }
         }
       }
       .fileImporter(isPresented: $isImporting, allowedContentTypes: [.item]) { result in
         install(result)
       }
-      .task { if model.installed.value == nil { await model.load(service: service) } }
+      .task(id: repositories.enabledSources) {
+        let sources = repositories.enabledSources
+        guard model.installed.value == nil || model.sources != sources else { return }
+        model.sources = sources
+        await model.load(service: service)
+      }
     }
   }
 
@@ -52,6 +66,10 @@ struct AppsView: View {
       await model.load(service: service)
     }
   }
+}
+
+enum AppsDestination: Hashable {
+  case repositories
 }
 
 enum AppsSection: String, CaseIterable, Identifiable {
@@ -86,12 +104,15 @@ final class AppsModel {
   var updates: [String: RepositoryItem] = [:]
   var details: DeviceDetails?
   var homebrew: HomebrewConfiguration?
+  /// The repositories updates are looked up in.
+  var sources: [RepositorySource] = []
 
   func load(service: DeviceService) async {
     do {
       let apps = try await service.installedApps()
       installed = .loaded(apps)
-      updates = await RepositoryClient().latest(appIDs: apps.map(\.id))
+      let ids = Set(apps.map(\.id))
+      updates = await RepositoryClient().catalog(from: sources).filter { ids.contains($0.key) }
       details = try? await service.details()
       homebrew = try? await service.homebrewConfiguration()
     } catch is CancellationError {
@@ -247,38 +268,17 @@ private struct InstalledAppsList: View {
   }
 }
 
-/// Loads an installed app's icon over SSH, keeping recent ones in memory.
+/// An installed app's icon, read from the TV over SSH.
 struct RemoteAppIcon: View {
   var path: String?
   var session: DeviceSession
   var size: CGFloat = 44
 
-  private static let cache = NSCache<NSString, UIImage>()
-  @State private var image: UIImage?
-
   var body: some View {
-    Group {
-      if let image {
-        Image(uiImage: image)
-          .resizable()
-          .scaledToFit()
-      } else {
-        Image(systemName: "app.dashed")
-          .font(.title)
-          .foregroundStyle(.secondary)
-      }
-    }
-    .frame(width: size, height: size)
-    .clipShape(.rect(cornerRadius: size * 0.22))
-    .accessibilityHidden(true)
-    .task(id: path) {
-      guard let path else { return }
-      if let cached = Self.cache.object(forKey: path as NSString) {
-        image = cached
-      } else if let data = try? await session.read(path), let loaded = UIImage(data: data) {
-        Self.cache.setObject(loaded, forKey: path as NSString)
-        image = loaded
-      }
+    let session = session
+    CachedIcon(key: path.map { IconCache.key(device: session.device.id, path: $0) }, size: size) {
+      guard let path else { throw DeviceError.invalidResponse }
+      return try await session.read(path)
     }
   }
 }

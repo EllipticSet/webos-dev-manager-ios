@@ -23,7 +23,8 @@ Inspired by [Device/DevMode Manager for webOS TV](https://github.com/webosbrew/d
 
 ## Features
 
-- **Apps**: install, update and open apps, including from the [Homebrew catalog](https://repo.webosbrew.org)
+- **Apps**: install, update and open apps, including from the [Homebrew catalog](https://repo.webosbrew.org), the non-free repository and your own repositories
+- **Root settings**: turn Telnet, SSH Server, Block System Updates and Failsafe Mode on or off, and restart the TV, on TVs rooted with Homebrew Channel
 - **Files**: browse, upload and download files on the TV
 - **Terminal**: open an SSH terminal on your TV
 - **Info**: check TV details and renew your Developer Mode session (or export a renewal script for cron)

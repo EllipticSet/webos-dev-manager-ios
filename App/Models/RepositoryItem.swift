@@ -18,6 +18,8 @@ struct RepositoryItem: Identifiable, Decodable, Hashable, Sendable {
     item.fullDescriptionUrl = fullDescriptionUrl.flatMap {
       URL(string: $0, relativeTo: base)?.absoluteString
     }
+    item.manifestUrl = manifestUrl.flatMap { URL(string: $0, relativeTo: base)?.absoluteString }
+    item.manifest = manifest?.resolved(against: base)
     return item
   }
 
@@ -59,6 +61,13 @@ struct PackageManifest: Decodable, Hashable, Sendable {
   var sourceUrl: String?
   var appDescription: String?
   var rootRequired: RootRequirement?
+
+  /// Makes the package address absolute: repositories can give it relative to the manifest.
+  func resolved(against base: URL) -> PackageManifest {
+    var manifest = self
+    if let url = URL(string: ipkUrl, relativeTo: base) { manifest.ipkUrl = url.absoluteString }
+    return manifest
+  }
 
   func hasUpdate(over installed: String?) -> Bool {
     guard let installed, let available = PackageVersion(version),
@@ -107,11 +116,21 @@ enum IncompatibleReason: String, Hashable, Sendable {
 struct RepositoryPage: Decodable, Sendable {
   struct Paging: Decodable, Sendable {
     var page: Int
-    var count: Int
     var maxPage: Int
-    var itemsTotal: Int
+    var nextUrl: String?
   }
 
-  var paging: Paging
+  /// Missing from repositories that publish all their apps on one page.
+  var paging: Paging?
   var packages: [RepositoryItem]
+
+  /// The page after this one, at `url`. Repositories link to it, or else number their pages from
+  /// the first, such as `apps/2.json` next to `apps.json`.
+  func nextURL(after url: URL, in source: RepositorySource) -> URL? {
+    guard let paging, paging.page < paging.maxPage else { return nil }
+    if let next = paging.nextUrl {
+      return URL(string: next, relativeTo: url)?.absoluteURL
+    }
+    return source.url.deletingPathExtension().appendingPathComponent("\(paging.page + 1).json")
+  }
 }

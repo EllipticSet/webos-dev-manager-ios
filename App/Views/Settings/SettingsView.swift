@@ -49,20 +49,21 @@ struct SettingsView: View {
         Section {
           Button(role: .destructive) {
             DescriptionCache.clear()
-            cacheSize = DescriptionCache.size()
+            IconCache.clear()
+            cacheSize = Self.cacheSize()
           } label: {
             LabeledContent(
-              "Clear Description Cache",
+              "Clear Cache",
               value: cacheSize.formatted(.byteCount(style: .file)))
           }
           .disabled(cacheSize == 0)
         } header: {
           Text("Storage")
         } footer: {
-          Text("Saved app descriptions open faster and work offline. They download again the next time you open them.")
+          Text("Saved app icons and descriptions show at once and work offline. They download again the next time they're needed.")
         }
       }
-      .onAppear { cacheSize = DescriptionCache.size() }
+      .onAppear { cacheSize = Self.cacheSize() }
       .navigationTitle("Settings")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
@@ -74,6 +75,10 @@ struct SettingsView: View {
       }
       .sheet(item: $passcodePurpose) { PasscodeSheet(purpose: $0).tint(settings.accent) }
     }
+  }
+
+  private static func cacheSize() -> Int64 {
+    DescriptionCache.size() + IconCache.size()
   }
 
   private var securityFooter: String {

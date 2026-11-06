@@ -6,74 +6,153 @@ struct RepositoryListView: View {
   var model: AppsModel
   var service: DeviceService
 
-  @State private var items: [RepositoryItem] = []
-  @State private var nextPage: Int? = 1
+  @Environment(RepositoryStore.self) private var repositories
+  @State private var feeds: [RepositoryFeed] = []
   @State private var isLoading = false
-  @State private var errorMessage: String?
+  /// Changes after every load, so the loading row asks for the next page.
+  @State private var loadCount = 0
   @State private var searchText = ""
 
-  private var visibleItems: [RepositoryItem] {
-    guard !searchText.isEmpty else { return items }
-    return items.filter {
+  private var isPending: Bool { feeds.contains(where: \.isPending) }
+
+  var body: some View {
+    List {
+      AppsSectionPicker(section: $section)
+      ForEach(feeds) { feed in
+        let items = visibleItems(of: feed)
+        let showsError = feed.errorMessage != nil && searchText.isEmpty && !hasOnlyErrors
+        if !items.isEmpty || showsError {
+          Section {
+            ForEach(items) { item in
+              NavigationLink {
+                AppDetailView(appID: item.id, catalogItem: item, model: model, service: service)
+              } label: {
+                RepositoryRow(item: item, installed: model.installedApp(id: item.id))
+              }
+            }
+            if showsError, let errorMessage = feed.errorMessage {
+              Text(errorMessage).foregroundStyle(.secondary).font(.footnote)
+              Button("Try Again", systemImage: "arrow.clockwise") { retry(feed) }
+            }
+          } header: {
+            if feeds.count > 1 { Text(feed.source.title) }
+          }
+        }
+      }
+      if isPending {
+        HStack {
+          Spacer()
+          ProgressView()
+          Spacer()
+        }
+        .listRowSeparator(.hidden)
+        .task(id: loadCount) { await loadNext() }
+      }
+    }
+    .listSectionSpacing(.compact)
+    .overlay { stateOverlay }
+    .searchable(text: $searchText, prompt: "Search Apps")
+    .refreshable { reset() }
+    .task(id: repositories.enabledSources) {
+      if feeds.map(\.source) != repositories.enabledSources { reset() }
+    }
+  }
+
+  /// Every repository failed before listing any app.
+  private var hasOnlyErrors: Bool {
+    !feeds.isEmpty && feeds.allSatisfy { $0.items.isEmpty && $0.errorMessage != nil }
+  }
+
+  @ViewBuilder
+  private var stateOverlay: some View {
+    if repositories.enabledSources.isEmpty {
+      ContentUnavailableView {
+        Label("No Repositories", systemImage: "server.rack")
+      } description: {
+        Text("Turn on a repository to browse its apps.")
+      } actions: {
+        NavigationLink("Repositories", value: AppsDestination.repositories)
+      }
+    } else if hasOnlyErrors, let message = feeds.first?.errorMessage {
+      ErrorStateView(message: message) { feeds.indices.forEach { feeds[$0].errorMessage = nil } }
+    } else if !feeds.isEmpty, feeds.allSatisfy({ $0.items.isEmpty && !$0.isPending && $0.errorMessage == nil }) {
+      ContentUnavailableView(
+        "No Apps", systemImage: "square.grid.2x2",
+        description: Text("The repositories you turned on don't have any apps."))
+    }
+  }
+
+  private func visibleItems(of feed: RepositoryFeed) -> [RepositoryItem] {
+    guard !searchText.isEmpty else { return feed.items }
+    return feed.items.filter {
       $0.title.localizedCaseInsensitiveContains(searchText)
         || $0.id.localizedCaseInsensitiveContains(searchText)
     }
   }
 
-  var body: some View {
-    List {
-      AppsSectionPicker(section: $section)
-      Section {
-        ForEach(visibleItems) { item in
-          NavigationLink {
-            AppDetailView(appID: item.id, catalogItem: item, model: model, service: service)
-          } label: {
-            RepositoryRow(item: item, installed: model.installedApp(id: item.id))
-          }
-        }
-        if nextPage != nil {
-          HStack {
-            Spacer()
-            ProgressView()
-            Spacer()
-          }
-          .listRowSeparator(.hidden)
-          .task(id: items.count) { await loadNext() }
-        }
-        if let errorMessage, !items.isEmpty {
-          Text(errorMessage).foregroundStyle(.secondary).font(.footnote)
-        }
-      }
-    }
-    .listSectionSpacing(.compact)
-    .overlay {
-      if let errorMessage, items.isEmpty {
-        ErrorStateView(message: errorMessage) { Task { await loadNext() } }
-      }
-    }
-    .searchable(text: $searchText, prompt: "Search Apps")
-    .refreshable {
-      items = []
-      nextPage = 1
-      errorMessage = nil
-    }
+  private func reset() {
+    feeds = repositories.enabledSources.map(RepositoryFeed.init(source:))
   }
 
+  private func retry(_ feed: RepositoryFeed) {
+    guard let index = feeds.firstIndex(where: { $0.id == feed.id }) else { return }
+    feeds[index].errorMessage = nil
+  }
+
+  /// Whether the feed a page was loaded for is still shown: the repositories may have changed, or
+  /// the list may have been refreshed, while the page loaded.
+  private func isCurrent(_ generation: UUID, at index: Int) -> Bool {
+    index < feeds.count && feeds[index].generation == generation
+  }
+
+  /// Loads the repositories one page at a time, in order.
   private func loadNext() async {
-    guard let page = nextPage, !isLoading else { return }
+    guard !isLoading, let index = feeds.firstIndex(where: \.isPending),
+      let url = feeds[index].nextURL
+    else { return }
+    let source = feeds[index].source
+    let generation = feeds[index].generation
     isLoading = true
-    defer { isLoading = false }
+    defer {
+      isLoading = false
+      loadCount += 1
+    }
     do {
-      let result = try await RepositoryClient().page(page)
-      items.append(contentsOf: result.packages)
-      nextPage = result.paging.page < result.paging.maxPage ? result.paging.page + 1 : nil
-      errorMessage = nil
+      let page = try await RepositoryClient().page(at: url)
+      guard isCurrent(generation, at: index) else { return }
+      feeds[index].items.append(contentsOf: page.packages)
+      feeds[index].visited.insert(url)
+      feeds[index].nextURL = page.nextURL(after: url, in: source).flatMap { next in
+        // A repository whose pages link back to each other would otherwise load forever.
+        let feed = feeds[index]
+        let isNew = !feed.visited.contains(next)
+        return isNew && feed.visited.count < RepositoryClient.maximumPages ? next : nil
+      }
     } catch is CancellationError {
     } catch let error as URLError where error.code == .cancelled {
     } catch {
-      errorMessage = DeviceError.message(for: error)
-      nextPage = items.isEmpty ? 1 : nil
+      guard isCurrent(generation, at: index) else { return }
+      feeds[index].errorMessage = DeviceError.message(for: error)
     }
+  }
+}
+
+/// A repository's apps, as far as they've loaded.
+private struct RepositoryFeed: Identifiable {
+  var source: RepositorySource
+  var items: [RepositoryItem] = []
+  var nextURL: URL?
+  var visited: Set<URL> = []
+  var errorMessage: String?
+  /// Changes when the list is loaded again, so a page that was still loading is discarded.
+  var generation = UUID()
+
+  var id: URL { source.id }
+  var isPending: Bool { nextURL != nil && errorMessage == nil }
+
+  init(source: RepositorySource) {
+    self.source = source
+    nextURL = source.url
   }
 }
 
@@ -103,20 +182,22 @@ private struct RepositoryRow: View {
   }
 }
 
+/// A repository app's icon, downloaded from the repository.
 struct RepositoryIcon: View {
   var uri: String?
   var size: CGFloat
 
+  private var url: URL? { uri.flatMap(URL.init(string:)) }
+
   var body: some View {
-    AsyncImage(url: uri.flatMap(URL.init(string:))) { image in
-      image.resizable().scaledToFit()
-    } placeholder: {
-      Image(systemName: "app.dashed")
-        .font(.title)
-        .foregroundStyle(.secondary)
+    let url = url
+    CachedIcon(key: url.map(IconCache.key(url:)), size: size) {
+      guard let url else { throw URLError(.badURL) }
+      let (data, response) = try await URLSession.shared.data(from: url)
+      if let http = response as? HTTPURLResponse, http.statusCode != 200 {
+        throw URLError(.badServerResponse)
+      }
+      return data
     }
-    .frame(width: size, height: size)
-    .clipShape(.rect(cornerRadius: size * 0.22))
-    .accessibilityHidden(true)
   }
 }

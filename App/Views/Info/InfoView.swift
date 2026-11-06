@@ -112,6 +112,11 @@ struct InfoView: View {
         DetailRow(title: "Version", value: homebrewApp.version)
         if let root = homebrewConfig?.root {
           DetailRow(title: "Root", value: root ? "Active" : "Inactive")
+          NavigationLink {
+            HomebrewSettingsView(device: device, service: service)
+          } label: {
+            Label("Root Settings", systemImage: "slider.horizontal.3")
+          }
         }
         if let manifest = homebrewRelease?.manifest, manifest.hasUpdate(over: homebrewApp.version) {
           Button("Update to \(manifest.version)", systemImage: "arrow.down.circle") {
