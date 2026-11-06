@@ -1,0 +1,12 @@
+[
+  {"id": "com.example.demo", "title": "Demo App", "vendor": "Example", "version": "1.0.0", "color": "5B8DEF"},
+  {"id": "org.webosbrew.hbchannel", "title": "Homebrew Channel", "vendor": "webosbrew", "version": "0.6.0", "color": "7E57C2"},
+  {"id": "youtube.leanback.v4", "title": "YouTube AdFree", "vendor": "webosbrew", "version": "0.2.0", "color": "E53935"},
+  {"id": "com.limelight.webos", "title": "Moonlight", "vendor": "Moonlight", "version": "1.0.0", "color": "26A69A"},
+  {"id": "com.example.jellyfin", "title": "Jellyfin Player", "vendor": "Example Media", "version": "1.9.2", "color": "8E24AA"},
+  {"id": "com.example.retroarch", "title": "RetroArch", "vendor": "Example Games", "version": "1.16.0", "color": "43A047"},
+  {"id": "com.example.weather", "title": "Weather Board", "vendor": "Example Labs", "version": "2.3.1", "color": "039BE5"},
+  {"id": "com.example.photos", "title": "Photo Frame", "vendor": "Example Labs", "version": "0.8.4", "color": "FB8C00"},
+  {"id": "com.example.radio", "title": "Internet Radio", "vendor": "Example Media", "version": "3.0.0", "color": "D81B60"},
+  {"id": "com.example.systemmonitor", "title": "System Monitor", "vendor": "Example Tools", "version": "1.2.0", "color": "546E7A"}
+]

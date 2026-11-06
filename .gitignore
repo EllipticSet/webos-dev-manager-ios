@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Xcode: user-specific data
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Xcode: build output
+build/
+DerivedData/
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.xcarchive
+
+# Swift Package Manager (Package.resolved stays committed)
+.build/
+.swiftpm/
+Packages/
+
+# Python (Tools/)
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Local secrets and generated keys
+*.pem
+*.p12
+*.mobileprovision
+webos_rsa*
+renew-devmode-*.sh
+.env
