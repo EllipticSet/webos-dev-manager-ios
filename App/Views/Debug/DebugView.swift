@@ -49,7 +49,7 @@ struct DebugView: View {
         }
       }
       .navigationTitle("Debug")
-      .toolbar { AppMenu() }
+      .appMenu()
     }
   }
 }

@@ -18,9 +18,18 @@ final class RepositoryStore {
     }
   }
 
+  /// The repositories whose apps are hidden in the catalog, so the ones after them are easier to
+  /// reach.
+  private(set) var collapsedSources: Set<URL> {
+    didSet {
+      UserDefaults.standard.set(collapsedSources.map(\.absoluteString), forKey: Self.collapsedKey)
+    }
+  }
+
   private static let officialKey = "repositories.officialEnabled"
   private static let nonFreeKey = "repositories.nonFreeEnabled"
   private static let customKey = "repositories.custom"
+  private static let collapsedKey = "repositories.collapsed"
 
   init() {
     let defaults = UserDefaults.standard
@@ -29,6 +38,8 @@ final class RepositoryStore {
     customSources = (defaults.stringArray(forKey: Self.customKey) ?? [])
       .compactMap(URL.init(string:))
       .map { RepositorySource(kind: .custom, url: $0) }
+    collapsedSources = Set(
+      (defaults.stringArray(forKey: Self.collapsedKey) ?? []).compactMap(URL.init(string:)))
   }
 
   /// In the order the catalog lists them, which also decides whose entry wins for an app that's in
@@ -45,6 +56,14 @@ final class RepositoryStore {
   func add(_ url: URL) {
     guard !contains(url) else { return }
     customSources.append(RepositorySource(kind: .custom, url: url))
+  }
+
+  func isCollapsed(_ source: RepositorySource) -> Bool {
+    collapsedSources.contains(source.url)
+  }
+
+  func setCollapsed(_ isCollapsed: Bool, for source: RepositorySource) {
+    if isCollapsed { collapsedSources.insert(source.url) } else { collapsedSources.remove(source.url) }
   }
 
   func remove(_ source: RepositorySource) {

@@ -25,9 +25,8 @@ struct TerminalsView: View {
         }
       }
       .navigationTitle("Terminal")
-      .navigationBarTitleDisplayMode(.inline)
+      .appMenu()
       .toolbar {
-        AppMenu()
         ToolbarItemGroup(placement: .primaryAction) {
           if terminals.sessions.count > 1 {
             Picker("Session", selection: $terminals.selectedID) {
@@ -59,6 +58,9 @@ private struct TerminalContent: View {
   var body: some View {
     TerminalRepresentable(view: session.view)
       .id(session.id)
+      // Keeps the text off the display's rounded corners and, in a regular width, the sidebar.
+      .padding(.horizontal, 8)
+      .background(Color(uiColor: session.view.nativeBackgroundColor))
       .ignoresSafeArea(.container, edges: .bottom)
       .overlay(alignment: .top) { statusBanner }
   }

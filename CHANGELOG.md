@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.4.2
+
+### Added
+- In Apps › Available, each repository has a header: tap its name to hide or show its apps, so you can reach the next repository without scrolling past every app. Your choice is remembered.
+
+### Changed
+- Apps › Homebrew is now called Available.
+- The Prepare a Developer Account step of the Developer Mode setup links to LG's Developer Mode guide, where you sign in or create your account.
+- Checking off a step of the Developer Mode setup folds its instructions away, as in Dev Manager for desktop.
+- Files shows Upload, New Folder, Select and Go To as separate buttons instead of one menu, and those that don't fit go to the system's overflow menu.
+- In landscape on iPhone Duo's outer display, Manage TVs, Certificates, Settings and About are listed directly in the overflow menu instead of in a submenu.
+- Terminal has a large title like the other tabs, and its text keeps a margin from the edges of the display.
+
+### Fixed
+- On iPhone Duo partially folded, the progress panel of an operation moves off the fold, as system alerts do: to the right half when you hold it like a book, and to the bottom half when it stands like a laptop.
+
 ## 1.4.1
 
 ### Changed

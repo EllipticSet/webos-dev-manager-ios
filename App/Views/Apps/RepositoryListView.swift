@@ -22,7 +22,7 @@ struct RepositoryListView: View {
         let items = visibleItems(of: feed)
         let showsError = feed.errorMessage != nil && searchText.isEmpty && !hasOnlyErrors
         if !items.isEmpty || showsError {
-          Section {
+          Section(isExpanded: isExpanded(feed)) {
             ForEach(items) { item in
               NavigationLink {
                 AppDetailView(appID: item.id, catalogItem: item, model: model, service: service)
@@ -35,7 +35,11 @@ struct RepositoryListView: View {
               Button("Try Again", systemImage: "arrow.clockwise") { retry(feed) }
             }
           } header: {
-            if feeds.count > 1 { Text(feed.source.title) }
+            if isCollapsible {
+              header(for: feed)
+            } else if feeds.count > 1 {
+              Text(feed.source.title)
+            }
           }
         }
       }
@@ -56,6 +60,37 @@ struct RepositoryListView: View {
     .task(id: repositories.enabledSources) {
       if feeds.map(\.source) != repositories.enabledSources { reset() }
     }
+  }
+
+  /// Repositories can be hidden except while searching, so every result shows.
+  private var isCollapsible: Bool { searchText.isEmpty }
+
+  private func isExpanded(_ feed: RepositoryFeed) -> Binding<Bool> {
+    Binding {
+      !isCollapsible || !repositories.isCollapsed(feed.source)
+    } set: { isExpanded in
+      repositories.setCollapsed(!isExpanded, for: feed.source)
+    }
+  }
+
+  private func header(for feed: RepositoryFeed) -> some View {
+    let isExpanded = isExpanded(feed)
+    return Button {
+      withAnimation(.smooth) { isExpanded.wrappedValue.toggle() }
+    } label: {
+      HStack {
+        Text(feed.source.title)
+        Spacer()
+        Image(systemName: "chevron.right")
+          .font(.footnote.weight(.semibold))
+          .rotationEffect(.degrees(isExpanded.wrappedValue ? 90 : 0))
+      }
+      .contentShape(.rect)
+    }
+    .buttonStyle(.plain)
+    .accessibilityLabel(feed.source.title)
+    .accessibilityValue(isExpanded.wrappedValue ? "Shown" : "Hidden")
+    .accessibilityHint(isExpanded.wrappedValue ? "Hides this repository's apps" : "Shows this repository's apps")
   }
 
   /// Every repository failed before listing any app.

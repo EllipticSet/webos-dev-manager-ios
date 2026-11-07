@@ -19,7 +19,7 @@ struct AppsView: View {
         switch section {
         case .installed:
           InstalledAppsList(section: $section, device: device, model: model, service: service)
-        case .homebrew:
+        case .available:
           RepositoryListView(section: $section, device: device, model: model, service: service)
         }
       }
@@ -27,10 +27,10 @@ struct AppsView: View {
       .navigationDestination(for: AppsDestination.self) { _ in
         RepositoriesView(model: model, service: service)
       }
+      .appMenu()
       .toolbar {
-        AppMenu()
         ToolbarItemGroup(placement: .primaryAction) {
-          if section == .homebrew {
+          if section == .available {
             NavigationLink(value: AppsDestination.repositories) {
               Label("Repositories", systemImage: "server.rack")
             }
@@ -74,7 +74,7 @@ enum AppsDestination: Hashable {
 
 enum AppsSection: String, CaseIterable, Identifiable {
   case installed = "Installed"
-  case homebrew = "Homebrew"
+  case available = "Available"
 
   var id: Self { self }
 }

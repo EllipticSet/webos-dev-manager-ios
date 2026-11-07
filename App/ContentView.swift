@@ -14,7 +14,7 @@ struct ContentView: View {
       } else {
         NavigationStack {
           WelcomeView { isAddingDevice = true }
-            .toolbar { AppMenu(isAlwaysShown: true) }
+            .appMenu(isAlwaysShown: true)
         }
       }
     }
@@ -221,29 +221,52 @@ private struct OperationProgressOverlay: View {
     ZStack {
       Color.black.opacity(0.3)
         .ignoresSafeArea()
-      VStack(spacing: 16) {
-        Text(activity.title)
-          .font(.headline)
-          .multilineTextAlignment(.center)
-        if let fraction = activity.fraction {
-          ProgressView(value: min(max(fraction, 0), 1))
-        } else {
-          ProgressView()
-        }
-        if !activity.status.isEmpty {
-          Text(activity.status)
-            .font(.subheadline)
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.center)
-        }
-        Button("Cancel", role: .cancel) { operations.cancel() }
-          .buttonStyle(.bordered)
+      GeometryReader { proxy in
+        panel
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .padding(Self.foldInsets(in: proxy))
+          .animation(.smooth, value: Self.foldInsets(in: proxy))
       }
-      .padding(24)
-      .frame(maxWidth: 340)
-      .background(.regularMaterial, in: .rect(cornerRadius: 24))
-      .padding()
-      .accessibilityAddTraits(.isModal)
     }
+  }
+
+  /// While iPhone Duo is partially folded, the panel moves off the fold, as system alerts do: to the
+  /// trailing side when it's held like a book, and to the bottom half, nearer the hands, when it
+  /// stands like a laptop.
+  private static func foldInsets(in proxy: GeometryProxy) -> EdgeInsets {
+    guard #available(iOS 27.1, *),
+      let fold = proxy.reservedRegions(kind: .division).first(where: \.isActive)
+    else { return EdgeInsets() }
+    if fold.frame.height > fold.frame.width {
+      return EdgeInsets(top: 0, leading: fold.frame.maxX + fold.margins.trailing, bottom: 0, trailing: 0)
+    } else {
+      return EdgeInsets(top: fold.frame.maxY + fold.margins.bottom, leading: 0, bottom: 0, trailing: 0)
+    }
+  }
+
+  private var panel: some View {
+    VStack(spacing: 16) {
+      Text(activity.title)
+        .font(.headline)
+        .multilineTextAlignment(.center)
+      if let fraction = activity.fraction {
+        ProgressView(value: min(max(fraction, 0), 1))
+      } else {
+        ProgressView()
+      }
+      if !activity.status.isEmpty {
+        Text(activity.status)
+          .font(.subheadline)
+          .foregroundStyle(.secondary)
+          .multilineTextAlignment(.center)
+      }
+      Button("Cancel", role: .cancel) { operations.cancel() }
+        .buttonStyle(.bordered)
+    }
+    .padding(24)
+    .frame(maxWidth: 340)
+    .background(.regularMaterial, in: .rect(cornerRadius: 24))
+    .padding()
+    .accessibilityAddTraits(.isModal)
   }
 }

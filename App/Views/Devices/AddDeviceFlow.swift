@@ -63,13 +63,17 @@ private struct DevModeChecklistView: View {
   private struct Step: Identifiable {
     var id: String { title }
     var title: String
-    var details: [String]
+    var details: [LocalizedStringKey]
   }
 
   private let steps = [
     Step(
       title: "Prepare a Developer Account",
-      details: ["Create a free webOS TV Developer account with your LG account."]),
+      details: [
+        "In your browser, open [LG’s Developer Mode guide](https://webostv.developer.lge.com/develop/getting-started/developer-mode-app).",
+        "Select “SIGN IN” at the top right of the page.",
+        "Create a free LG Developer account, or sign in if you already have one.",
+      ]),
     Step(
       title: "Install the Developer Mode App",
       details: [
@@ -98,9 +102,12 @@ private struct DevModeChecklistView: View {
           Toggle(isOn: binding(for: step)) {
             Text(step.title).font(.headline)
           }
-          ForEach(Array(step.details.enumerated()), id: \.offset) { index, detail in
-            Label(detail, systemImage: "\(index + 1).circle")
-              .font(.subheadline)
+          // A finished step folds away, as in Dev Manager for desktop.
+          if !completed.contains(step.id) {
+            ForEach(Array(step.details.enumerated()), id: \.offset) { index, detail in
+              Label(detail, systemImage: "\(index + 1).circle")
+                .font(.subheadline)
+            }
           }
         }
       }
@@ -123,7 +130,9 @@ private struct DevModeChecklistView: View {
     Binding {
       completed.contains(step.id)
     } set: { isDone in
-      if isDone { completed.insert(step.id) } else { completed.remove(step.id) }
+      withAnimation(.smooth) {
+        if isDone { completed.insert(step.id) } else { completed.remove(step.id) }
+      }
     }
   }
 }
