@@ -22,7 +22,7 @@ struct FilesRootView: View {
           DirectoryView(directory: directory, device: device) { path.append($0) }
         }
       }
-      .toolbar { AppMenu() }
+      .appMenu()
       .navigationDestination(for: String.self) { directory in
         DirectoryView(directory: directory, device: device) { path.append($0) }
       }
@@ -163,16 +163,18 @@ struct DirectoryView: View {
         Button("Done", role: .confirm) { setEditing(false) }
       }
     } else {
-      ToolbarItem(placement: .primaryAction) {
-        Menu("More", systemImage: "ellipsis") {
-          Button("Upload Files…", systemImage: "square.and.arrow.up") { isUploading = true }
-          Button("New Folder…", systemImage: "folder.badge.plus") {
-            newFolderName = ""
-            isCreatingFolder = true
-          }
-          Divider()
-          Button("Select", systemImage: "checkmark.circle") { setEditing(true) }
-          Divider()
+      // Separate items rather than one menu, so the system moves the ones that don't fit into its
+      // own overflow menu, which on iPhone Duo is the only one the vertical bar should have.
+      ToolbarItemGroup(placement: .primaryAction) {
+        Button("Upload Files…", systemImage: "square.and.arrow.up") { isUploading = true }
+        Button("New Folder…", systemImage: "folder.badge.plus") {
+          newFolderName = ""
+          isCreatingFolder = true
+        }
+      }
+      ToolbarItemGroup(placement: .primaryAction) {
+        Button("Select", systemImage: "checklist") { setEditing(true) }
+        Menu("Go To", systemImage: "arrow.turn.left.up") {
           if directory != "/" {
             Button("Parent Folder", systemImage: "arrow.up") {
               navigate((directory as NSString).deletingLastPathComponent)

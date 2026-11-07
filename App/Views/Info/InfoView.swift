@@ -30,7 +30,7 @@ struct InfoView: View {
         }
       }
       .navigationTitle("Info")
-      .toolbar { AppMenu() }
+      .appMenu()
       .task { if details.value == nil { await load() } }
       .sheet(item: $screenshot) { ScreenshotView(screenshot: $0) }
       .sheet(item: $renewalScript) { RenewalScriptView(script: $0) }
