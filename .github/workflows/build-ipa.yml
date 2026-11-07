@@ -9,6 +9,7 @@ on:
       - "LICENSE"
       - "Tools/**"
       - "docs/**"
+      - ".gitignore"
   workflow_dispatch:
 
 permissions:
