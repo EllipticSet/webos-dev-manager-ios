@@ -36,3 +36,11 @@ venv/
 webos_rsa*
 renew-devmode-*.sh
 .env
+
+# Apple Product Bezels (licensed, not redistributable)
+docs/bezels/
+
+# Local screenshot tooling: only the framed screenshots are published
+Tools/frame_screenshots.py
+docs/screenshots/*
+!docs/screenshots/framed/
