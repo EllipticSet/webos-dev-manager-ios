@@ -87,7 +87,7 @@ struct DeviceEditorView: View {
 
       if !isNew {
         Section {
-          Button(didForgetHostKey ? "TV Identity Forgotten" : "Forget TV Identity") {
+          Button(didForgetHostKey ? String(localized: "TV Identity Forgotten") : String(localized: "Forget TV Identity")) {
             store.forgetHostKey(of: device)
             didForgetHostKey = true
           }
@@ -99,12 +99,12 @@ struct DeviceEditorView: View {
 
     }
     .scrollDismissesKeyboard(.interactively)
-    .alert(isNew ? "Couldn't Add the TV" : "Couldn't Save the TV", isPresented: isShowingError) {
+    .alert(isNew ? String(localized: "Couldn't Add the TV") : String(localized: "Couldn't Save the TV"), isPresented: isShowingError) {
       Button("OK", role: .cancel) {}
     } message: {
       Text(errorMessage ?? "")
     }
-    .navigationTitle(isNew ? "New TV" : device.name)
+    .navigationTitle(isNew ? String(localized: "New TV") : device.name)
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
       ToolbarItem(placement: .confirmationAction) {
@@ -142,7 +142,7 @@ struct DeviceEditorView: View {
       }
     case .importedKey:
       Button(
-        keyFileName ?? (secrets.privateKey == nil ? "Choose Key File…" : "Replace Key…"),
+        keyFileName ?? (secrets.privateKey == nil ? String(localized: "Choose Key File…") : String(localized: "Replace Key…")),
         systemImage: "key"
       ) { isImportingKey = true }
       LabeledContent("Passphrase") {
@@ -179,7 +179,7 @@ struct DeviceEditorView: View {
   private func reachabilityRow(_ title: LocalizedStringKey, _ isReachable: Bool) -> some View {
     LabeledContent(title) {
       Label(
-        isReachable ? "Reachable" : "Not Reachable",
+        isReachable ? String(localized: "Reachable") : String(localized: "Not Reachable"),
         systemImage: isReachable ? "checkmark.circle.fill" : "xmark.circle"
       )
       .foregroundStyle(isReachable ? Color.green : Color.secondary)

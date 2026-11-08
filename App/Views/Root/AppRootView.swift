@@ -9,7 +9,7 @@ struct AppRootView: View {
   @Environment(\.scenePhase) private var scenePhase
 
   @State private var isShowingSplash = true
-  @State private var lockWindow = LockWindowPresenter()
+  @State private var lockWindow = OverlayWindowPresenter()
 
   var body: some View {
     ContentView()

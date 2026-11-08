@@ -24,8 +24,13 @@ struct AppsView: View {
         }
       }
       .navigationTitle("Apps")
-      .navigationDestination(for: AppsDestination.self) { _ in
-        RepositoriesView(model: model, service: service)
+      .navigationDestination(for: AppsDestination.self) { destination in
+        switch destination {
+        case .repositories:
+          RepositoriesView(model: model, service: service)
+        case .app(let id, let catalogItem):
+          AppDetailView(appID: id, catalogItem: catalogItem, model: model, service: service)
+        }
       }
       .appMenu()
       .toolbar {
@@ -54,7 +59,8 @@ struct AppsView: View {
     guard case .success(let url) = result else { return }
     guard url.pathExtension.lowercased() == "ipk" else {
       operations.failure = .init(
-        title: "Invalid File", message: "Choose a package with the .ipk extension.")
+        title: String(localized: "Invalid File"),
+        message: String(localized: "Choose a package with the .ipk extension."))
       return
     }
     let service = service
@@ -68,8 +74,11 @@ struct AppsView: View {
   }
 }
 
+/// Screens are pushed with values rather than destination views: in a regular width, a screen
+/// pushed with a destination view stays in place when another sidebar row is chosen.
 enum AppsDestination: Hashable {
   case repositories
+  case app(id: String, catalogItem: RepositoryItem?)
 }
 
 enum AppsSection: String, CaseIterable, Identifiable {
@@ -77,6 +86,13 @@ enum AppsSection: String, CaseIterable, Identifiable {
   case available = "Available"
 
   var id: Self { self }
+
+  var title: String {
+    switch self {
+    case .installed: String(localized: "Installed")
+    case .available: String(localized: "Available")
+    }
+  }
 }
 
 /// The picker between the Apps tab's lists, as their first row. Scrolling with the content keeps it
@@ -87,7 +103,7 @@ struct AppsSectionPicker: View {
   var body: some View {
     Section {
       Picker("Section", selection: $section) {
-        ForEach(AppsSection.allCases) { Text($0.rawValue).tag($0) }
+        ForEach(AppsSection.allCases) { Text($0.title).tag($0) }
       }
       .pickerStyle(.segmented)
       .listRowBackground(Color.clear)
@@ -148,18 +164,15 @@ private struct InstalledAppsList: View {
     .listSectionSpacing(.compact)
     .overlay { stateOverlay }
     .refreshable { await model.load(service: service) }
-    .alert(
-      removalTitle, isPresented: isConfirmingRemoval, presenting: appToRemove
-    ) { app in
-      Button("Uninstall", role: .destructive) { uninstall(app) }
-      Button("Cancel", role: .cancel) {}
-    } message: { app in
-      if app.id == InstalledApp.homebrewChannelID {
-        Text("You're about to remove Homebrew Channel. If the TV is rooted, you'll lose root immediately.")
-      } else {
-        Text("The app and its data will be removed from the TV.")
-      }
-    }
+    .confirmationAlert(
+      { "Uninstall \($0.title)?" }, presenting: $appToRemove,
+      message: { app in
+        app.id == InstalledApp.homebrewChannelID
+          ? "You're about to remove Homebrew Channel. If the TV is rooted, you'll lose root immediately."
+          : "The app and its data will be removed from the TV."
+      },
+      actionTitle: "Uninstall", role: .destructive
+    ) { uninstall($0) }
   }
 
   @ViewBuilder
@@ -178,20 +191,11 @@ private struct InstalledAppsList: View {
     }
   }
 
-  private var removalTitle: String {
-    "Uninstall \(appToRemove?.title ?? "the app")?"
-  }
-
-  private var isConfirmingRemoval: Binding<Bool> {
-    Binding { appToRemove != nil } set: { if !$0 { appToRemove = nil } }
-  }
 
   private func row(for app: InstalledApp) -> some View {
     let update = model.updates[app.id]
     let hasUpdate = update?.manifest?.hasUpdate(over: app.version) == true
-    return NavigationLink {
-      AppDetailView(appID: app.id, catalogItem: update, model: model, service: service)
-    } label: {
+    return NavigationLink(value: AppsDestination.app(id: app.id, catalogItem: update)) {
       HStack(spacing: 12) {
         RemoteAppIcon(path: app.iconPath, session: service.session)
         VStack(alignment: .leading, spacing: 2) {
@@ -221,7 +225,7 @@ private struct InstalledAppsList: View {
       }
     }
     .swipeActions {
-      Button("Uninstall", systemImage: "trash", role: .destructive) { appToRemove = app }
+      Button("Uninstall", systemImage: "trash") { appToRemove = app }
         .tint(.red)
       if hasUpdate, let manifest = update?.manifest {
         Button("Update", systemImage: "arrow.down.circle") { installUpdate(manifest, of: app) }

@@ -7,6 +7,13 @@ struct NewCertificateView: View {
     case generate = "Generate"
     case importFile = "Import"
     var id: Self { self }
+
+    var title: String {
+      switch self {
+      case .generate: String(localized: "Generate")
+      case .importFile: String(localized: "Import")
+      }
+    }
   }
 
   @Environment(CertificateStore.self) private var certificates
@@ -35,7 +42,7 @@ struct NewCertificateView: View {
       Form {
         Section {
           Picker("Source", selection: $source) {
-            ForEach(Source.allCases) { Text($0.rawValue).tag($0) }
+            ForEach(Source.allCases) { Text($0.title).tag($0) }
           }
           .pickerStyle(.segmented)
           .listRowBackground(Color.clear)
@@ -52,7 +59,7 @@ struct NewCertificateView: View {
               ForEach(CertificateKind.allCases) { Text($0.title).tag($0) }
             }
           case .importFile:
-            Button(importedFileName ?? "Choose Key File…", systemImage: "doc") { isImporting = true }
+            Button(importedFileName ?? String(localized: "Choose Key File…"), systemImage: "doc") { isImporting = true }
             LabeledContent("Passphrase") {
               SecureField("Passphrase", text: $passphrase, prompt: Text("If any"))
                 .autocorrectionDisabled()

@@ -30,7 +30,7 @@ struct AppDescriptionView: View {
           }
           .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
       case .failed:
-        Text(fallback ?? "Couldn't load the description.")
+        Text(fallback ?? String(localized: "Couldn't load the description."))
           .foregroundStyle(fallback == nil ? .secondary : .primary)
       }
     }

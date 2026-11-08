@@ -4,8 +4,8 @@ extension View {
   /// A confirmation shown in a popover pointing at this view from `arrowEdge`, which a
   /// `confirmationDialog` can't choose. Tapping outside cancels.
   func confirmationPopover(
-    _ title: String, isPresented: Binding<Bool>, arrowEdge: Edge, message: String,
-    actionTitle: String, role: ButtonRole? = nil, action: @escaping () -> Void
+    _ title: LocalizedStringResource, isPresented: Binding<Bool>, arrowEdge: Edge, message: LocalizedStringResource,
+    actionTitle: LocalizedStringResource, role: ButtonRole? = nil, action: @escaping () -> Void
   ) -> some View {
     popover(isPresented: isPresented, arrowEdge: arrowEdge) {
       ConfirmationPopoverContent(
@@ -20,9 +20,9 @@ extension View {
 }
 
 private struct ConfirmationPopoverContent: View {
-  var title: String
-  var message: String
-  var actionTitle: String
+  var title: LocalizedStringResource
+  var message: LocalizedStringResource
+  var actionTitle: LocalizedStringResource
   var role: ButtonRole?
   var action: () -> Void
 

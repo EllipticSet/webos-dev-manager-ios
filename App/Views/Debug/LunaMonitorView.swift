@@ -48,7 +48,7 @@ struct LunaMonitorView: View {
           description: Text(errorMessage))
       } else if builder.calls.isEmpty {
         ContentUnavailableView(
-          isCapturing ? "Waiting for calls…" : "No Capture",
+          isCapturing ? String(localized: "Waiting for calls…") : String(localized: "No Capture"),
           systemImage: "point.3.connected.trianglepath.dotted",
           description: Text("Start a capture or open a .jsonl file recorded with ls-monitor -j."))
       }
@@ -113,7 +113,7 @@ struct LunaMonitorView: View {
     let didAccess = url.startAccessingSecurityScopedResource()
     defer { if didAccess { url.stopAccessingSecurityScopedResource() } }
     guard let text = try? String(contentsOf: url, encoding: .utf8) else {
-      errorMessage = "Couldn't read the file."
+      errorMessage = String(localized: "Couldn't read the file.")
       return
     }
     var imported = LunaCallBuilder()

@@ -49,17 +49,17 @@ struct PasscodeSheet: View {
 
   private var title: String {
     switch purpose {
-    case .create: "Set Passcode"
-    case .change: "Change Passcode"
-    case .remove: "Turn Off Passcode"
+    case .create: String(localized: "Set Passcode")
+    case .change: String(localized: "Change Passcode")
+    case .remove: String(localized: "Turn Off Passcode")
     }
   }
 
   private var prompt: String {
     switch step {
-    case .current: "Enter your current passcode"
-    case .new: "Enter a new 6-digit passcode"
-    case .confirm: "Enter it again to confirm"
+    case .current: String(localized: "Enter your current passcode")
+    case .new: String(localized: "Enter a new 6-digit passcode")
+    case .confirm: String(localized: "Enter it again to confirm")
     }
   }
 
@@ -71,7 +71,7 @@ struct PasscodeSheet: View {
       guard lock.verify(value) else {
         failures += 1
         message = (lock.lockedUntil ?? .distantPast) > .now
-          ? "Too many attempts. Try again later." : "Incorrect passcode."
+          ? String(localized: "Too many attempts. Try again later.") : String(localized: "Incorrect passcode.")
         return
       }
       if purpose == .remove {
@@ -86,7 +86,7 @@ struct PasscodeSheet: View {
     case .confirm:
       guard value == firstEntry else {
         failures += 1
-        message = "The passcodes didn't match. Try again."
+        message = String(localized: "The passcodes didn't match. Try again.")
         step = .new
         return
       }

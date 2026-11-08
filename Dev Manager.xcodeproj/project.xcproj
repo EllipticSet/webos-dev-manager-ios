@@ -8,6 +8,7 @@
     "development": "en",
     "supported": [
       "Base",
+      "it",
     ],
   },
   "packages": [
@@ -58,7 +59,7 @@
       "kind": "group",
       "name": "Products",
       "children": [
-        { "path": "<PRODUCTS>/Dev Manager Tests.xctest", "id": "391AD6FE9344AE8F19B21DC6", "index": false },
+        { "path": "<PRODUCTS>/Dev Manager Tests.xctest", "id": "391AD6FE9344AE8F19B21DC6", "type": "wrapper.cfbundle", "index": false },
         { "path": "<PRODUCTS>/Dev Manager.app", "id": "C78FFBE0C40297107B6A22A4", "type": "wrapper.application", "index": false },
       ],
     },
@@ -91,16 +92,19 @@
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
         "CODE_SIGN_IDENTITY": "iPhone Developer",
         "CURRENT_PROJECT_VERSION": "1",
+        "DEVELOPMENT_TEAM": "",
         "INFOPLIST_FILE": "App/Info.plist",
         "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
         "LD_RUNPATH_SEARCH_PATHS": [
           "$(inherited)",
           "@executable_path/Frameworks",
         ],
-        "MARKETING_VERSION": "1.4.2",
+        "LOCALIZATION_PREFERS_STRING_CATALOGS": "YES",
+        "MARKETING_VERSION": "1.5.0",
         "PRODUCT_BUNDLE_IDENTIFIER": "org.bg.devmanagerios",
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "SDKROOT": "iphoneos",
+        "SWIFT_EMIT_LOC_STRINGS": "YES",
         "SWIFT_VERSION": "5.0",
         "TARGETED_DEVICE_FAMILY": "1",
       },
@@ -119,6 +123,7 @@
       ],
       "build-settings": {
         "BUNDLE_LOADER": "$(TEST_HOST)",
+        "DEVELOPMENT_TEAM": "",
         "GENERATE_INFOPLIST_FILE": "YES",
         "INFOPLIST_FILE": "Tests/Info.plist",
         "IPHONEOS_DEPLOYMENT_TARGET": "26.0",

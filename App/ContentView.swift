@@ -42,6 +42,7 @@ struct ContentView: View {
     } message: { failure in
       Text(failure.message)
     }
+    .readsFold()
   }
 
   private var isShowingFailure: Binding<Bool> {
@@ -65,7 +66,10 @@ private struct MainTabsView: View {
         NavigationSplitView {
           MainSidebar(device: device, selection: $selectedTab)
         } detail: {
+          // A new identity for each row, because a screen pushed inside the detail, such as an
+          // app's page, would otherwise stay in place when another row is chosen.
           screen(for: selectedTab)
+            .id(selectedTab)
         }
         .navigationSplitViewStyle(.balanced)
       } else {
@@ -224,23 +228,9 @@ private struct OperationProgressOverlay: View {
       GeometryReader { proxy in
         panel
           .frame(maxWidth: .infinity, maxHeight: .infinity)
-          .padding(Self.foldInsets(in: proxy))
-          .animation(.smooth, value: Self.foldInsets(in: proxy))
+          .padding(.offFold(in: proxy))
+          .animation(.smooth, value: EdgeInsets.offFold(in: proxy))
       }
-    }
-  }
-
-  /// While iPhone Duo is partially folded, the panel moves off the fold, as system alerts do: to the
-  /// trailing side when it's held like a book, and to the bottom half, nearer the hands, when it
-  /// stands like a laptop.
-  private static func foldInsets(in proxy: GeometryProxy) -> EdgeInsets {
-    guard #available(iOS 27.1, *),
-      let fold = proxy.reservedRegions(kind: .division).first(where: \.isActive)
-    else { return EdgeInsets() }
-    if fold.frame.height > fold.frame.width {
-      return EdgeInsets(top: 0, leading: fold.frame.maxX + fold.margins.trailing, bottom: 0, trailing: 0)
-    } else {
-      return EdgeInsets(top: fold.frame.maxY + fold.margins.bottom, leading: 0, bottom: 0, trailing: 0)
     }
   }
 

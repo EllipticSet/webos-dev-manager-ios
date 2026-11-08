@@ -1,23 +1,32 @@
 import SwiftUI
 import UIKit
 
-/// Shows the lock in its own window, because anything in the main window sits below open sheets.
+/// Shows content in its own window, such as the lock or a confirmation, because anything in the
+/// main window sits below open sheets.
 @MainActor
-final class LockWindowPresenter {
+final class OverlayWindowPresenter {
+  private let level: UIWindow.Level
   private var window: UIWindow?
+
+  init(level: UIWindow.Level = .alert + 1) {
+    self.level = level
+  }
 
   func show(_ content: some View) {
     let controller = UIHostingController(rootView: content)
-    // Keeps VoiceOver from reading the app behind the lock.
+    controller.view.backgroundColor = .clear
+    // Keeps VoiceOver from reading the app behind the content.
     controller.view.accessibilityViewIsModal = true
-    // The lock can replace what's already showing, such as the cover for the app switcher.
+    // The content can replace what's already showing, such as the lock replacing the cover for
+    // the app switcher.
     if let window {
       window.rootViewController = controller
       return
     }
     guard let scene = activeScene else { return }
     let window = UIWindow(windowScene: scene)
-    window.windowLevel = .alert + 1
+    window.windowLevel = level
+    window.backgroundColor = .clear
     window.rootViewController = controller
     window.makeKeyAndVisible()
     self.window = window

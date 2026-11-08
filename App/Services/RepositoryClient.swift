@@ -89,7 +89,7 @@ struct RepositoryClient: Sendable {
     request.timeoutInterval = 30
     let (data, response) = try await URLSession.shared.data(for: request)
     guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-      throw DeviceError.repository("Couldn't load the description.")
+      throw DeviceError.repository(String(localized: "Couldn't load the description."))
     }
     return String(decoding: data, as: UTF8.self)
   }
@@ -99,12 +99,12 @@ struct RepositoryClient: Sendable {
     request.timeoutInterval = 30
     let (data, response) = try await URLSession.shared.data(for: request)
     if let http = response as? HTTPURLResponse, http.statusCode != 200 {
-      throw DeviceError.repository("The repository request failed (HTTP \(http.statusCode)).")
+      throw DeviceError.repository(String(localized: "The repository request failed (HTTP \(http.statusCode))."))
     }
     do {
       return try JSONDecoder().decode(Value.self, from: data)
     } catch {
-      throw DeviceError.repository("The repository sent invalid data.")
+      throw DeviceError.repository(String(localized: "The repository sent invalid data."))
     }
   }
 }

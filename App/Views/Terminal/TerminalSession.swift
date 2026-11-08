@@ -22,6 +22,8 @@ final class TerminalSession: Identifiable {
   private(set) var isDumb = false
 
   @ObservationIgnored let view: TerminalView
+  /// Called when the shell exits by itself, such as after `exit`, but not when the connection fails.
+  @ObservationIgnored var onExit: (() -> Void)?
   @ObservationIgnored private let bridge = TerminalBridge()
   @ObservationIgnored private let service: DeviceService
   @ObservationIgnored private var task: Task<Void, Never>?
@@ -75,7 +77,7 @@ final class TerminalSession: Identifiable {
         // Developer Mode shells on some firmware refuse a PTY; use a plain shell like the desktop app.
         guard !receivedOutput, !Task.isCancelled else { throw error }
         isDumb = true
-        feedLine("Basic terminal: this TV doesn't offer a full terminal.")
+        feedLine(String(localized: "Basic terminal: this TV doesn't offer a full terminal."))
         do {
           try await client.withTTY { inbound, outbound in
             self.writer = outbound
@@ -87,6 +89,7 @@ final class TerminalSession: Identifiable {
       }
       status = .closed(nil)
       try? await client.close()
+      if !Task.isCancelled { onExit?() }
     } catch is CancellationError {
       status = .closed(nil)
     } catch {

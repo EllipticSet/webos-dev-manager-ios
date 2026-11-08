@@ -26,11 +26,12 @@ Inspired by [Device/DevMode Manager for webOS TV](https://github.com/webosbrew/d
 - **Apps**: install, update and open apps, including from the [Homebrew catalog](https://repo.webosbrew.org), the non-free repository and your own repositories
 - **Root settings**: turn Telnet, SSH Server, Block System Updates and Failsafe Mode on or off, and restart the TV, on TVs rooted with Homebrew Channel
 - **Files**: browse, upload and download files on the TV
-- **Terminal**: open an SSH terminal on your TV
+- **Terminal**: open SSH terminals on your TV, several at a time
 - **Info**: check TV details and renew your Developer Mode session (or export a renewal script for cron)
 - **Debug**: live logs, crash reports, PmLog levels and a Luna bus monitor
 - **Certificates**: create SSH keys to sign in to rooted TVs without a password
-- **App lock**: protect the app with Face ID or a passcode
+- **App lock**: protect the app with a passcode, and unlock it with Face ID or Touch ID
+- **Languages**: English and Italian, following the language of your iPhone
 
 ## Screenshots
 
@@ -183,6 +184,10 @@ Changes that touch only documentation, `docs/` or `Tools/` don't produce a new b
 `Tools/FakeTV/start.sh` starts a fake webOS TV on `127.0.0.1` (SSH on port 9922, Key Server on port 9991 with passphrase `A1B2C3`). It requires Python 3 and creates everything under `/tmp/faketv`. All keys it generates are throwaway.
 
 The private keys in `Tests/TestKeys.swift` are test fixtures used only by the unit tests: they don't give access to any real device.
+
+### Translations
+
+The app's text is in English in the code, with its Italian translation in `App/Localizable.xcstrings` (and the permission prompts in `App/InfoPlist.xcstrings`). Builds from the command line don't add new strings to the catalog, so when you add or change text in the app, add its Italian translation there too, or it shows in English. Text outside SwiftUI views, such as error messages, needs `String(localized:)` to be translated. `Tests/LocalizationTests.swift` checks that every translation keeps the placeholders of its English text.
 
 ### Automatic builds
 

@@ -24,9 +24,7 @@ struct RepositoryListView: View {
         if !items.isEmpty || showsError {
           Section(isExpanded: isExpanded(feed)) {
             ForEach(items) { item in
-              NavigationLink {
-                AppDetailView(appID: item.id, catalogItem: item, model: model, service: service)
-              } label: {
+              NavigationLink(value: AppsDestination.app(id: item.id, catalogItem: item)) {
                 RepositoryRow(item: item, installed: model.installedApp(id: item.id))
               }
             }
@@ -89,8 +87,8 @@ struct RepositoryListView: View {
     }
     .buttonStyle(.plain)
     .accessibilityLabel(feed.source.title)
-    .accessibilityValue(isExpanded.wrappedValue ? "Shown" : "Hidden")
-    .accessibilityHint(isExpanded.wrappedValue ? "Hides this repository's apps" : "Shows this repository's apps")
+    .accessibilityValue(isExpanded.wrappedValue ? String(localized: "Shown") : String(localized: "Hidden"))
+    .accessibilityHint(isExpanded.wrappedValue ? String(localized: "Hides this repository's apps") : String(localized: "Shows this repository's apps"))
   }
 
   /// Every repository failed before listing any app.
@@ -208,7 +206,7 @@ private struct RepositoryRow: View {
         }
         if let installed {
           let hasUpdate = item.manifest?.hasUpdate(over: installed.version) == true
-          Text(hasUpdate ? "Update Available" : "Installed")
+          Text(hasUpdate ? String(localized: "Update Available") : String(localized: "Repository.Installed", defaultValue: "Installed"))
             .font(.caption)
             .foregroundStyle(.tint)
         }

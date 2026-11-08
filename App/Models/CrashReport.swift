@@ -40,7 +40,7 @@ struct CrashReport: Identifiable, Hashable, Sendable {
         title = "\(processName) (\(processID))"
         summary = summaryText
       } else {
-        title = "Unknown crash"
+        title = String(localized: "Unknown crash")
         summary = name
       }
       return

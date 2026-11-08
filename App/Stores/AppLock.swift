@@ -95,11 +95,11 @@ final class AppLock {
     }
   }
 
+  /// The device's biometry, even before it's set up: `LAContext` reports the sensor once a policy
+  /// has been checked, whether or not it can be used.
   var biometryType: LABiometryType {
     let context = LAContext()
-    guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) else {
-      return .none
-    }
+    _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     return context.biometryType
   }
 
@@ -108,11 +108,22 @@ final class AppLock {
     case .faceID: "Face ID"
     case .touchID: "Touch ID"
     case .opticID: "Optic ID"
-    default: "Face ID or Touch ID"
+    default: String(localized: "Face ID or Touch ID")
     }
   }
 
-  var isBiometryAvailable: Bool { biometryType != .none }
+  var biometrySymbol: String {
+    switch biometryType {
+    case .touchID: "touchid"
+    case .opticID: "opticid"
+    default: "faceid"
+    }
+  }
+
+  /// Whether the biometry is set up, so it can unlock the app.
+  var isBiometryAvailable: Bool {
+    LAContext().canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+  }
 
   func didEnterBackground() {
     guard hasPasscode else { return }
@@ -171,7 +182,7 @@ final class AppLock {
     context.localizedFallbackTitle = ""
     do {
       _ = try await context.evaluatePolicy(
-        .deviceOwnerAuthenticationWithBiometrics, localizedReason: "Unlock Dev Manager")
+        .deviceOwnerAuthenticationWithBiometrics, localizedReason: String(localized: "Unlock Dev Manager"))
       failedAttempts = 0
       setLockout(nil)
       isLocked = false
@@ -184,7 +195,7 @@ final class AppLock {
   /// Confirms the person can use biometrics before turning them on.
   func enableBiometrics() async -> Bool {
     let success = try? await LAContext().evaluatePolicy(
-      .deviceOwnerAuthenticationWithBiometrics, localizedReason: "Unlock Dev Manager")
+      .deviceOwnerAuthenticationWithBiometrics, localizedReason: String(localized: "Unlock Dev Manager"))
     biometricsEnabled = success == true
     return biometricsEnabled
   }

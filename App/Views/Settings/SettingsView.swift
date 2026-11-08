@@ -83,9 +83,12 @@ struct SettingsView: View {
 
   private var securityFooter: String {
     if lock.hasPasscode && !lock.isBiometryAvailable {
-      return "The app always asks for the passcode when it opens, and when it returns from the background after the time you choose. Face ID and Touch ID are unavailable because they aren't set up on this device."
+      if lock.biometryType == .none {
+        return String(localized: "The app always asks for the passcode when it opens, and when it returns from the background after the time you choose. Face ID and Touch ID are unavailable because they aren't set up on this device.")
+      }
+      return String(localized: "The app always asks for the passcode when it opens, and when it returns from the background after the time you choose. \(lock.biometryName) is unavailable because it isn't set up on this device.")
     }
-    return "The app always asks for the passcode when it opens, and when it returns from the background after the time you choose. A forgotten passcode can't be recovered: the only way back in is to erase the app's data."
+    return String(localized: "The app always asks for the passcode when it opens, and when it returns from the background after the time you choose. A forgotten passcode can't be recovered: the only way back in is to erase the app's data.")
   }
 
   private func swatch(for choice: AccentChoice) -> some View {

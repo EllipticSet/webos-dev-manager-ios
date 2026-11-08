@@ -1,0 +1,4064 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "": {
+      "shouldTranslate": false
+    },
+    "%@": {
+      "shouldTranslate": false
+    },
+    "%@ is already in the list.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ è già nell’elenco."
+          }
+        }
+      }
+    },
+    "%@ now signs in with “%@”.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ora accede con “%2$@”."
+          }
+        }
+      }
+    },
+    "%@ sign in with this certificate and couldn't connect without it. Choose another sign-in method in Manage TVs first.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ accedono con questo certificato e senza non potrebbero più connettersi. Prima scegli un altro metodo di accesso in Gestisci TV."
+          }
+        }
+      }
+    },
+    "%@ signs in with this certificate and couldn't connect without it. Choose another sign-in method in Manage TVs first.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ accede con questo certificato e senza non potrebbe più connettersi. Prima scegli un altro metodo di accesso in Gestisci TV."
+          }
+        }
+      }
+    },
+    "%@ · %@": {
+      "shouldTranslate": false
+    },
+    "%@/%@": {
+      "shouldTranslate": false
+    },
+    "%@@%@": {
+      "shouldTranslate": false
+    },
+    "%@@%@:%@": {
+      "shouldTranslate": false
+    },
+    "%lld of %lld digits entered": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cifre inserite: %1$lld di %2$lld"
+          }
+        }
+      }
+    },
+    "192.168.1.50": {
+      "shouldTranslate": false
+    },
+    "A forgotten passcode can't be recovered. This removes the passcode, saved TVs, and certificates from this iPhone. Your TVs aren't changed.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un codice dimenticato non si può recuperare. Questa operazione rimuove da questo iPhone il codice, le TV salvate e i certificati. Le TV non vengono modificate."
+          }
+        }
+      }
+    },
+    "About": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informazioni"
+          }
+        }
+      }
+    },
+    "Accent Color": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colore principale"
+          }
+        }
+      }
+    },
+    "Acknowledgments": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ringraziamenti"
+          }
+        }
+      }
+    },
+    "Active": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attivo"
+          }
+        }
+      }
+    },
+    "Add": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi"
+          }
+        }
+      }
+    },
+    "Add %@ to the TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi %@ alla TV"
+          }
+        }
+      }
+    },
+    "Add Repository": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi repository"
+          }
+        }
+      }
+    },
+    "Add Repository…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi repository…"
+          }
+        }
+      }
+    },
+    "Add TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi TV"
+          }
+        }
+      }
+    },
+    "Add a webOS TV with Developer Mode or root to install apps, manage files, and open a terminal.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi una TV webOS con Developer Mode o root per installare app, gestire i file e aprire un terminale."
+          }
+        }
+      }
+    },
+    "Add to TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi alla TV"
+          }
+        }
+      }
+    },
+    "After 1 Hour": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopo 1 ora"
+          }
+        }
+      }
+    },
+    "After 1 Minute": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopo 1 minuto"
+          }
+        }
+      }
+    },
+    "After 15 Minutes": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopo 15 minuti"
+          }
+        }
+      }
+    },
+    "After 5 Minutes": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopo 5 minuti"
+          }
+        }
+      }
+    },
+    "All Contexts": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutti i contesti"
+          }
+        }
+      }
+    },
+    "Already Added": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Già aggiunto"
+          }
+        }
+      }
+    },
+    "App Storage": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spazio per le app"
+          }
+        }
+      }
+    },
+    "Apps": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App"
+          }
+        }
+      }
+    },
+    "Auto-Renewal": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rinnovo automatico"
+          }
+        }
+      }
+    },
+    "Auto-Renewal Script…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Script di rinnovo automatico…"
+          }
+        }
+      }
+    },
+    "Available": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponibili"
+          }
+        }
+      }
+    },
+    "Based on Device/DevMode Manager for webOS TV by webosbrew (Apache 2.0)": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basata su Device/DevMode Manager for webOS TV di webosbrew (Apache 2.0)"
+          }
+        }
+      }
+    },
+    "Basic terminal: this TV doesn't offer a full terminal.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminale di base: questa TV non offre un terminale completo."
+          }
+        }
+      }
+    },
+    "Block System Updates": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocca aggiornamenti di sistema"
+          }
+        }
+      }
+    },
+    "Blue": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blu"
+          }
+        }
+      }
+    },
+    "Browse, upload, and download files": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sfoglia, carica e scarica file"
+          }
+        }
+      }
+    },
+    "Built In": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integrati"
+          }
+        }
+      }
+    },
+    "Call": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiamata"
+          }
+        }
+      }
+    },
+    "Can't reach the Key Server. Turn it on in the Developer Mode app and try again.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile raggiungere il Key Server. Attivalo nell’app Developer Mode e riprova."
+          }
+        }
+      }
+    },
+    "Can't reach the TV. Check the address and port, and that Developer Mode is on.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile raggiungere la TV. Controlla l’indirizzo, la porta e che Developer Mode sia attivo."
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annulla"
+          }
+        }
+      }
+    },
+    "Certificate": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificato"
+          }
+        }
+      }
+    },
+    "Certificate Sent": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificato inviato"
+          }
+        }
+      }
+    },
+    "Certificate in Use": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificato in uso"
+          }
+        }
+      }
+    },
+    "Certificates": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificati"
+          }
+        }
+      }
+    },
+    "Change Passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica codice"
+          }
+        }
+      }
+    },
+    "Changing %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica di %@ in corso"
+          }
+        }
+      }
+    },
+    "Check Connection": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifica connessione"
+          }
+        }
+      }
+    },
+    "Check TV details and renew your Developer Mode session": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla i dettagli della TV e rinnova la sessione Developer Mode"
+          }
+        }
+      }
+    },
+    "Check off each step when you've finished it. Keep your iPhone and TV on the same Wi-Fi network.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spunta ogni passaggio quando l’hai completato. Tieni iPhone e TV sulla stessa rete Wi-Fi."
+          }
+        }
+      }
+    },
+    "Checking Repository": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifica del repository"
+          }
+        }
+      }
+    },
+    "Checking…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifica…"
+          }
+        }
+      }
+    },
+    "Checks which services respond at this address.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifica quali servizi rispondono a questo indirizzo."
+          }
+        }
+      }
+    },
+    "Choose Key File…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli file della chiave…"
+          }
+        }
+      }
+    },
+    "Choose a package with the .ipk extension.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli un pacchetto con estensione .ipk."
+          }
+        }
+      }
+    },
+    "Choose the port, user, and sign-in method.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli la porta, l’utente e il metodo di accesso."
+          }
+        }
+      }
+    },
+    "Choose…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli…"
+          }
+        }
+      }
+    },
+    "Citadel (MIT)": {
+      "shouldTranslate": false
+    },
+    "Clear": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svuota"
+          }
+        }
+      }
+    },
+    "Clear Cache": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svuota cache"
+          }
+        }
+      }
+    },
+    "Clear Log": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svuota log"
+          }
+        }
+      }
+    },
+    "Clear the Log on the TV?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi svuotare il log sulla TV?"
+          }
+        }
+      }
+    },
+    "Close Terminal": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiudi terminale"
+          }
+        }
+      }
+    },
+    "Colors the app's buttons and icons. Very light or dark colors can be hard to read.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colora i pulsanti e le icone dell’app. I colori molto chiari o molto scuri possono essere difficili da leggere."
+          }
+        }
+      }
+    },
+    "Configuration changes apply when the TV restarts.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le modifiche alla configurazione si applicano al riavvio della TV."
+          }
+        }
+      }
+    },
+    "Confirm on the TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conferma sulla TV"
+          }
+        }
+      }
+    },
+    "Connected": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connesso"
+          }
+        }
+      }
+    },
+    "Connecting": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione in corso"
+          }
+        }
+      }
+    },
+    "Connecting to the TV…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione alla TV…"
+          }
+        }
+      }
+    },
+    "Connecting…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione…"
+          }
+        }
+      }
+    },
+    "Continue": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua"
+          }
+        }
+      }
+    },
+    "Copied": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiata"
+          }
+        }
+      }
+    },
+    "Copy Address": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia indirizzo"
+          }
+        }
+      }
+    },
+    "Copy Public Key": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia chiave pubblica"
+          }
+        }
+      }
+    },
+    "Couldn't Add the TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile aggiungere la TV"
+          }
+        }
+      }
+    },
+    "Couldn't Load": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile caricare"
+          }
+        }
+      }
+    },
+    "Couldn't Save the Certificate": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile salvare il certificato"
+          }
+        }
+      }
+    },
+    "Couldn't Save the TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile salvare la TV"
+          }
+        }
+      }
+    },
+    "Couldn't Send the Certificate": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile inviare il certificato"
+          }
+        }
+      }
+    },
+    "Couldn't connect to the TV. Make sure it's on and on the same Wi-Fi network.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile connettersi alla TV. Assicurati che sia accesa e sulla stessa rete Wi-Fi."
+          }
+        }
+      }
+    },
+    "Couldn't find the luna-send command. Is this device really running webOS?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile trovare il comando luna-send. Questo dispositivo usa davvero webOS?"
+          }
+        }
+      }
+    },
+    "Couldn't load the description.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile caricare la descrizione."
+          }
+        }
+      }
+    },
+    "Couldn't read the file.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile leggere il file."
+          }
+        }
+      }
+    },
+    "Couldn't save the credentials (error %d).": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile salvare le credenziali (errore %d)."
+          }
+        }
+      }
+    },
+    "Crash Reports": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report di crash"
+          }
+        }
+      }
+    },
+    "Create": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea"
+          }
+        }
+      }
+    },
+    "Create a certificate to sign in to rooted TVs without a password.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un certificato per accedere alle TV con root senza password."
+          }
+        }
+      }
+    },
+    "Create a free LG Developer account, or sign in if you already have one.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un account LG Developer gratuito o accedi se ne hai già uno."
+          }
+        }
+      }
+    },
+    "Created": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creato"
+          }
+        }
+      }
+    },
+    "Creating Folder": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creazione della cartella"
+          }
+        }
+      }
+    },
+    "Custom": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizzato"
+          }
+        }
+      }
+    },
+    "Custom Color": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colore personalizzato"
+          }
+        }
+      }
+    },
+    "Custom repositories are used by this app's catalog.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I repository personalizzati vengono usati dal catalogo di questa app."
+          }
+        }
+      }
+    },
+    "Custom repositories are used by this app's catalog. To use one in Homebrew Channel too, choose Add to TV and confirm on the TV. Remove repositories from the TV in Homebrew Channel's settings.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I repository personalizzati vengono usati dal catalogo di questa app. Per usarne uno anche in Homebrew Channel, scegli Aggiungi alla TV e conferma sulla TV. Puoi rimuovere i repository dalla TV nelle impostazioni di Homebrew Channel."
+          }
+        }
+      }
+    },
+    "Debug": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Debug"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina"
+          }
+        }
+      }
+    },
+    "Delete %lld Items?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi eliminare %lld elementi?"
+          }
+        }
+      }
+    },
+    "Delete Certificate": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina certificato"
+          }
+        }
+      }
+    },
+    "Delete This Crash Report?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi eliminare questo report di crash?"
+          }
+        }
+      }
+    },
+    "Delete “%@”?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi eliminare “%@”?"
+          }
+        }
+      }
+    },
+    "Deleting": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminazione"
+          }
+        }
+      }
+    },
+    "Description": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descrizione"
+          }
+        }
+      }
+    },
+    "Destination": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Destinazione"
+          }
+        }
+      }
+    },
+    "Dev Manager": {
+      "shouldTranslate": false
+    },
+    "Dev Manager is a companion app for LG webOS TVs in Developer Mode or with root access. Manage your TV from your iPhone over your local network.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dev Manager è un’app di supporto per le TV LG webOS con Developer Mode o con accesso root. Gestisci la TV da iPhone tramite la rete locale."
+          }
+        }
+      }
+    },
+    "Dev Manager is an independent developer tool. It isn't affiliated with, sponsored by, or approved by LG Electronics or the webOS Homebrew project. webOS is a trademark of its respective owners.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dev Manager è uno strumento per sviluppatori indipendente. Non è affiliato, sponsorizzato o approvato da LG Electronics o dal progetto webOS Homebrew. webOS è un marchio dei rispettivi proprietari."
+          }
+        }
+      }
+    },
+    "Developer Mode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Developer Mode"
+          }
+        }
+      }
+    },
+    "Developer Mode Key": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave Developer Mode"
+          }
+        }
+      }
+    },
+    "Disables all early system modifications and leaves recovery telnet running. Turns on by itself if the TV restarts or crashes during early startup.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disattiva tutte le modifiche di sistema all’avvio e lascia attivo il telnet di ripristino. Si attiva da solo se la TV si riavvia o si blocca nelle prime fasi dell’avvio."
+          }
+        }
+      }
+    },
+    "Disconnected": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disconnesso"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fine"
+          }
+        }
+      }
+    },
+    "Download": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scarica"
+          }
+        }
+      }
+    },
+    "Download failed (HTTP %lld).": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download non riuscito (HTTP %lld)."
+          }
+        }
+      }
+    },
+    "Downloading IPK to iPhone…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download dell’IPK su iPhone…"
+          }
+        }
+      }
+    },
+    "Downloading from TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download dalla TV"
+          }
+        }
+      }
+    },
+    "Edit %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica %@"
+          }
+        }
+      }
+    },
+    "Empty Folder": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cartella vuota"
+          }
+        }
+      }
+    },
+    "Enter Passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci il codice"
+          }
+        }
+      }
+    },
+    "Enter a new 6-digit passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci un nuovo codice di 6 cifre"
+          }
+        }
+      }
+    },
+    "Enter a web address, such as https://example.com/api/apps.json.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci un indirizzo web, ad esempio https://example.com/api/apps.json."
+          }
+        }
+      }
+    },
+    "Enter an absolute path, such as /media/developer.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci un percorso assoluto, ad esempio /media/developer."
+          }
+        }
+      }
+    },
+    "Enter it again to confirm": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inseriscilo di nuovo per confermare"
+          }
+        }
+      }
+    },
+    "Enter the address of the repository's apps.json.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci l’indirizzo del file apps.json del repository."
+          }
+        }
+      }
+    },
+    "Enter the key's passphrase.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci la passphrase della chiave."
+          }
+        }
+      }
+    },
+    "Enter your current passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci il codice attuale"
+          }
+        }
+      }
+    },
+    "Erase All Data?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi inizializzare tutti i dati?"
+          }
+        }
+      }
+    },
+    "Erase Data and Passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizializza dati e codice"
+          }
+        }
+      }
+    },
+    "Extra apps from repo.webosbrew.org that aren't open source": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App aggiuntive da repo.webosbrew.org che non sono open source"
+          }
+        }
+      }
+    },
+    "Face ID or Touch ID": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID o Touch ID"
+          }
+        }
+      }
+    },
+    "Failsafe Mode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità failsafe"
+          }
+        }
+      }
+    },
+    "Files": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
+          }
+        }
+      }
+    },
+    "Files with the same name in this folder will be overwritten.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I file con lo stesso nome in questa cartella verranno sovrascritti."
+          }
+        }
+      }
+    },
+    "Filter": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtra"
+          }
+        }
+      }
+    },
+    "Fingerprint": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impronta"
+          }
+        }
+      }
+    },
+    "Firmware": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firmware"
+          }
+        }
+      }
+    },
+    "Forget TV Identity": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dimentica identità della TV"
+          }
+        }
+      }
+    },
+    "Forgot Passcode?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codice dimenticato?"
+          }
+        }
+      }
+    },
+    "Full Screen": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermo intero"
+          }
+        }
+      }
+    },
+    "Generate": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genera"
+          }
+        }
+      }
+    },
+    "Go": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai"
+          }
+        }
+      }
+    },
+    "Go To": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai a"
+          }
+        }
+      }
+    },
+    "Go to Folder": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai alla cartella"
+          }
+        }
+      }
+    },
+    "Go to Folder…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai alla cartella…"
+          }
+        }
+      }
+    },
+    "Graphics Only": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo grafica"
+          }
+        }
+      }
+    },
+    "Green": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verde"
+          }
+        }
+      }
+    },
+    "Hidden": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nascoste"
+          }
+        }
+      }
+    },
+    "Hide Keyboard": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nascondi tastiera"
+          }
+        }
+      }
+    },
+    "Hides this repository's apps": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nasconde le app di questo repository"
+          }
+        }
+      }
+    },
+    "Homebrew Channel": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Homebrew Channel"
+          }
+        }
+      }
+    },
+    "Homebrew Channel on the TV has the same options in its settings.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Homebrew Channel sulla TV ha le stesse opzioni nelle sue impostazioni."
+          }
+        }
+      }
+    },
+    "Homebrew Channel opened on the TV with %@. Select Add Repository with the remote to finish.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Homebrew Channel si è aperto sulla TV con %@. Seleziona Add Repository con il telecomando per completare."
+          }
+        }
+      }
+    },
+    "How do you want to connect the TV?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Come vuoi connettere la TV?"
+          }
+        }
+      }
+    },
+    "IP Address": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indirizzo IP"
+          }
+        }
+      }
+    },
+    "If any": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se presente"
+          }
+        }
+      }
+    },
+    "Immediately": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subito"
+          }
+        }
+      }
+    },
+    "Import": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa"
+          }
+        }
+      }
+    },
+    "In your browser, open [LG’s Developer Mode guide](https://webostv.developer.lge.com/develop/getting-started/developer-mode-app).": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nel browser, apri la [guida di LG a Developer Mode](https://webostv.developer.lge.com/develop/getting-started/developer-mode-app)."
+          }
+        }
+      }
+    },
+    "Inactive": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non attivo"
+          }
+        }
+      }
+    },
+    "Incorrect passcode.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codice errato."
+          }
+        }
+      }
+    },
+    "Incorrect passphrase. Check the one shown in the Developer Mode app on the TV.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passphrase errata. Controlla quella mostrata nell’app Developer Mode sulla TV."
+          }
+        }
+      }
+    },
+    "Indigo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indaco"
+          }
+        }
+      }
+    },
+    "Info": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Info"
+          }
+        }
+      }
+    },
+    "Install": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installa"
+          }
+        }
+      }
+    },
+    "Install Homebrew Channel": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installa Homebrew Channel"
+          }
+        }
+      }
+    },
+    "Install IPK": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installa IPK"
+          }
+        }
+      }
+    },
+    "Install an IPK or choose an app from the Homebrew catalog.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installa un IPK o scegli un’app dal catalogo Homebrew."
+          }
+        }
+      }
+    },
+    "Install the Developer Mode App": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installa l’app Developer Mode"
+          }
+        }
+      }
+    },
+    "Install, update, and open apps, including from the Homebrew catalog": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installa, aggiorna e apri app, anche dal catalogo Homebrew"
+          }
+        }
+      }
+    },
+    "Installed": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installate"
+          }
+        }
+      }
+    },
+    "Installed: %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installata: %@"
+          }
+        }
+      }
+    },
+    "Installing %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installazione di %@"
+          }
+        }
+      }
+    },
+    "Installing Homebrew Channel": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installazione di Homebrew Channel"
+          }
+        }
+      }
+    },
+    "Installing on TV…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installazione sulla TV…"
+          }
+        }
+      }
+    },
+    "Invalid Address": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indirizzo non valido"
+          }
+        }
+      }
+    },
+    "Invalid File": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File non valido"
+          }
+        }
+      }
+    },
+    "Keeps LG firmware updates, which can remove root, from installing.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impedisce l’installazione degli aggiornamenti firmware LG, che possono rimuovere il root."
+          }
+        }
+      }
+    },
+    "Key Server (9991)": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key Server (9991)"
+          }
+        }
+      }
+    },
+    "LG Red": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rosso LG"
+          }
+        }
+      }
+    },
+    "Living Room Root": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Root del soggiorno"
+          }
+        }
+      }
+    },
+    "Living Room TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TV del soggiorno"
+          }
+        }
+      }
+    },
+    "Loading…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caricamento…"
+          }
+        }
+      }
+    },
+    "Log Levels": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Livelli di log"
+          }
+        }
+      }
+    },
+    "Log Unavailable": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log non disponibile"
+          }
+        }
+      }
+    },
+    "Luna Bus": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bus Luna"
+          }
+        }
+      }
+    },
+    "Make sure “Dev Mode Status” is ON.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assicurati che “Dev Mode Status” sia ON."
+          }
+        }
+      }
+    },
+    "Manage TVs": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestisci TV"
+          }
+        }
+      }
+    },
+    "Manual Setup": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configurazione manuale"
+          }
+        }
+      }
+    },
+    "Menu": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menu"
+          }
+        }
+      }
+    },
+    "Messages": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messaggi"
+          }
+        }
+      }
+    },
+    "Method": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metodo"
+          }
+        }
+      }
+    },
+    "Model": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modello"
+          }
+        }
+      }
+    },
+    "Monitor Unavailable": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monitor non disponibile"
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome"
+          }
+        }
+      }
+    },
+    "New Certificate": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuovo certificato"
+          }
+        }
+      }
+    },
+    "New Folder": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuova cartella"
+          }
+        }
+      }
+    },
+    "New Folder…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuova cartella…"
+          }
+        }
+      }
+    },
+    "New TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuova TV"
+          }
+        }
+      }
+    },
+    "New Terminal": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuovo terminale"
+          }
+        }
+      }
+    },
+    "No Apps": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna app"
+          }
+        }
+      }
+    },
+    "No Apps Installed": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna app installata"
+          }
+        }
+      }
+    },
+    "No Capture": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna acquisizione"
+          }
+        }
+      }
+    },
+    "No Certificates": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun certificato"
+          }
+        }
+      }
+    },
+    "No Crash Reports": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun report di crash"
+          }
+        }
+      }
+    },
+    "No Open Terminals": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun terminale aperto"
+          }
+        }
+      }
+    },
+    "No Repositories": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun repository"
+          }
+        }
+      }
+    },
+    "No TVs": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna TV"
+          }
+        }
+      }
+    },
+    "No certificates yet. Create one in Certificates, in the top-left menu.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancora nessun certificato. Creane uno in Certificati, nel menu in alto a sinistra."
+          }
+        }
+      }
+    },
+    "No saved TVs yet. Add one in Manage TVs.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancora nessuna TV salvata. Aggiungine una in Gestisci TV."
+          }
+        }
+      }
+    },
+    "Non-Free Software": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Software non libero"
+          }
+        }
+      }
+    },
+    "Not Installed": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non installato"
+          }
+        }
+      }
+    },
+    "Not Reachable": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non raggiungibile"
+          }
+        }
+      }
+    },
+    "Not compatible with this TV's processor.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non compatibile con il processore di questa TV."
+          }
+        }
+      }
+    },
+    "Not compatible with this TV's webOS version.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non compatibile con la versione di webOS di questa TV."
+          }
+        }
+      }
+    },
+    "Note the IP address and passphrase shown on the screen.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annota l’indirizzo IP e la passphrase mostrati sullo schermo."
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "OTA ID": {
+      "shouldTranslate": false
+    },
+    "Only the public key leaves this iPhone. Sending it to a TV also makes that TV sign in with this certificate, if the TV accepts it.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da questo iPhone esce solo la chiave pubblica. Inviandola a una TV, l’accesso a quella TV avverrà con questo certificato, se la TV lo accetta."
+          }
+        }
+      }
+    },
+    "Open": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri"
+          }
+        }
+      }
+    },
+    "Open %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri %@"
+          }
+        }
+      }
+    },
+    "Open Capture": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri acquisizione"
+          }
+        }
+      }
+    },
+    "Open Terminal": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri terminale"
+          }
+        }
+      }
+    },
+    "Open a shell on %@.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri una shell su %@."
+          }
+        }
+      }
+    },
+    "Open a terminal on your TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri un terminale sulla TV"
+          }
+        }
+      }
+    },
+    "Open on TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri sulla TV"
+          }
+        }
+      }
+    },
+    "Open the Developer Mode app again.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri di nuovo l’app Developer Mode."
+          }
+        }
+      }
+    },
+    "Open the Developer Mode app.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri l’app Developer Mode."
+          }
+        }
+      }
+    },
+    "Open the LG Content Store on the TV.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri LG Content Store sulla TV."
+          }
+        }
+      }
+    },
+    "Opening %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apertura di %@"
+          }
+        }
+      }
+    },
+    "Opening Homebrew Channel": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apertura di Homebrew Channel"
+          }
+        }
+      }
+    },
+    "Operation Failed": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Operazione non riuscita"
+          }
+        }
+      }
+    },
+    "Orange": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arancione"
+          }
+        }
+      }
+    },
+    "Parent Folder": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cartella superiore"
+          }
+        }
+      }
+    },
+    "Passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codice"
+          }
+        }
+      }
+    },
+    "Passphrase": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passphrase"
+          }
+        }
+      }
+    },
+    "Password": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password"
+          }
+        }
+      }
+    },
+    "Path": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percorso"
+          }
+        }
+      }
+    },
+    "Pause Scrolling": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sospendi scorrimento"
+          }
+        }
+      }
+    },
+    "Pink": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rosa"
+          }
+        }
+      }
+    },
+    "Port": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porta"
+          }
+        }
+      }
+    },
+    "Prepare a Developer Account": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepara un account sviluppatore"
+          }
+        }
+      }
+    },
+    "Prepare the Connection": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepara la connessione"
+          }
+        }
+      }
+    },
+    "Privacy": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy"
+          }
+        }
+      }
+    },
+    "Private Key": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave privata"
+          }
+        }
+      }
+    },
+    "Project Page": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pagina del progetto"
+          }
+        }
+      }
+    },
+    "Public Key": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave pubblica"
+          }
+        }
+      }
+    },
+    "Purple": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viola"
+          }
+        }
+      }
+    },
+    "RSA works with every TV. Ed25519 is smaller and faster, but older SSH servers don't support it.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RSA funziona con tutte le TV. Ed25519 è più compatto e veloce, ma i server SSH meno recenti non lo supportano."
+          }
+        }
+      }
+    },
+    "Reachable": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raggiungibile"
+          }
+        }
+      }
+    },
+    "Reconnect": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riconnetti"
+          }
+        }
+      }
+    },
+    "Remove": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuovi"
+          }
+        }
+      }
+    },
+    "Remove “%@”?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi rimuovere “%@”?"
+          }
+        }
+      }
+    },
+    "Renew Session": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rinnova sessione"
+          }
+        }
+      }
+    },
+    "Renewal failed.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rinnovo non riuscito."
+          }
+        }
+      }
+    },
+    "Renewing Developer Mode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rinnovo di Developer Mode"
+          }
+        }
+      }
+    },
+    "Replace": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sostituisci"
+          }
+        }
+      }
+    },
+    "Replace Existing Files?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi sostituire i file esistenti?"
+          }
+        }
+      }
+    },
+    "Replace Key…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sostituisci chiave…"
+          }
+        }
+      }
+    },
+    "Replace “%@”?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi sostituire “%@”?"
+          }
+        }
+      }
+    },
+    "Repositories": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repository"
+          }
+        }
+      }
+    },
+    "Repositories.Custom": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizzati"
+          }
+        }
+      }
+    },
+    "Repository.Installed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installed"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installata"
+          }
+        }
+      }
+    },
+    "Require Passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Richiedi codice"
+          }
+        }
+      }
+    },
+    "Required": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obbligatoria"
+          }
+        }
+      }
+    },
+    "Requires a rooted TV.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Richiede una TV con root."
+          }
+        }
+      }
+    },
+    "Restart": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riavvia"
+          }
+        }
+      }
+    },
+    "Restart %@?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi riavviare %@?"
+          }
+        }
+      }
+    },
+    "Restart TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riavvia TV"
+          }
+        }
+      }
+    },
+    "Restart the TV to apply the changes.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riavvia la TV per applicare le modifiche."
+          }
+        }
+      }
+    },
+    "Restarting TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riavvio della TV"
+          }
+        }
+      }
+    },
+    "Root": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Root"
+          }
+        }
+      }
+    },
+    "Root Configuration": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configurazione root"
+          }
+        }
+      }
+    },
+    "Root SSH (22)": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH root (22)"
+          }
+        }
+      }
+    },
+    "Root Settings": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni root"
+          }
+        }
+      }
+    },
+    "Rooted TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TV con root"
+          }
+        }
+      }
+    },
+    "Run it once a day with cron on a computer that's always on. iOS doesn't guarantee scheduled background execution.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eseguilo una volta al giorno con cron su un computer sempre acceso. iOS non garantisce l’esecuzione programmata in background."
+          }
+        }
+      }
+    },
+    "SSH Developer Mode (9922)": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH Developer Mode (9922)"
+          }
+        }
+      }
+    },
+    "SSH Server": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server SSH"
+          }
+        }
+      }
+    },
+    "Save": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva"
+          }
+        }
+      }
+    },
+    "Saved Certificate": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificato salvato"
+          }
+        }
+      }
+    },
+    "Saved app icons and descriptions show at once and work offline. They download again the next time they're needed.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le icone e le descrizioni delle app salvate appaiono subito e funzionano offline. Vengono scaricate di nuovo la prossima volta che servono."
+          }
+        }
+      }
+    },
+    "Screenshot": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screenshot"
+          }
+        }
+      }
+    },
+    "Search Apps": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerca app"
+          }
+        }
+      }
+    },
+    "Search Contexts": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerca contesti"
+          }
+        }
+      }
+    },
+    "Search for “Developer Mode”.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerca “Developer Mode”."
+          }
+        }
+      }
+    },
+    "Section": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sezione"
+          }
+        }
+      }
+    },
+    "Security": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sicurezza"
+          }
+        }
+      }
+    },
+    "Select": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona"
+          }
+        }
+      }
+    },
+    "Select Install.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona Installa."
+          }
+        }
+      }
+    },
+    "Select “SIGN IN” at the top right of the page.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona “SIGN IN” in alto a destra nella pagina."
+          }
+        }
+      }
+    },
+    "Send to TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invia alla TV"
+          }
+        }
+      }
+    },
+    "Sender": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mittente"
+          }
+        }
+      }
+    },
+    "Sending IPK to TV…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invio dell’IPK alla TV…"
+          }
+        }
+      }
+    },
+    "Sending the public key…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invio della chiave pubblica…"
+          }
+        }
+      }
+    },
+    "Sending to %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invio a %@"
+          }
+        }
+      }
+    },
+    "Sends the public key to this TV and signs in with it": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invia la chiave pubblica a questa TV e la usa per accedere"
+          }
+        }
+      }
+    },
+    "Sent": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inviato"
+          }
+        }
+      }
+    },
+    "Sent, but Sign-In Wasn't Changed": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inviato, ma l’accesso non è cambiato"
+          }
+        }
+      }
+    },
+    "Services Used": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servizi usati"
+          }
+        }
+      }
+    },
+    "Session ended.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessione terminata."
+          }
+        }
+      }
+    },
+    "Set Passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imposta codice"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni"
+          }
+        }
+      }
+    },
+    "Share Public Key": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Condividi chiave pubblica"
+          }
+        }
+      }
+    },
+    "Shown": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visibili"
+          }
+        }
+      }
+    },
+    "Shown on the TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrata sulla TV"
+          }
+        }
+      }
+    },
+    "Shows this repository's apps": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostra le app di questo repository"
+          }
+        }
+      }
+    },
+    "Sign in as root with the password or key you set up.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accedi come root con la password o la chiave che hai configurato."
+          }
+        }
+      }
+    },
+    "Sign in with your developer account.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accedi con il tuo account sviluppatore."
+          }
+        }
+      }
+    },
+    "Sign-In": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accesso"
+          }
+        }
+      }
+    },
+    "Sign-in credentials are missing. Edit the TV and enter them again.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mancano le credenziali di accesso. Modifica la TV e inseriscile di nuovo."
+          }
+        }
+      }
+    },
+    "Signs in with this certificate": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accede con questo certificato"
+          }
+        }
+      }
+    },
+    "SoC": {
+      "shouldTranslate": false
+    },
+    "Some features require root.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcune funzioni richiedono il root."
+          }
+        }
+      }
+    },
+    "Source": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Origine"
+          }
+        }
+      }
+    },
+    "Start Capture": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvia acquisizione"
+          }
+        }
+      }
+    },
+    "Start a capture or open a .jsonl file recorded with ls-monitor -j.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvia un’acquisizione o apri un file .jsonl registrato con ls-monitor -j."
+          }
+        }
+      }
+    },
+    "Status": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stato"
+          }
+        }
+      }
+    },
+    "Stop": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interrompi"
+          }
+        }
+      }
+    },
+    "Storage": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spazio"
+          }
+        }
+      }
+    },
+    "Storage.Available": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponibile"
+          }
+        }
+      }
+    },
+    "Swift NIO SSH (Apache 2.0)": {
+      "shouldTranslate": false
+    },
+    "SwiftTerm (MIT)": {
+      "shouldTranslate": false
+    },
+    "Syslog": {
+      "shouldTranslate": false
+    },
+    "Syslog, dmesg, and ls-monitor require a rooted TV.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syslog, dmesg e ls-monitor richiedono una TV con root."
+          }
+        }
+      }
+    },
+    "System Logs": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log di sistema"
+          }
+        }
+      }
+    },
+    "TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TV"
+          }
+        }
+      }
+    },
+    "TV Identity Forgotten": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identità della TV dimenticata"
+          }
+        }
+      }
+    },
+    "TV Screenshot": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screenshot della TV"
+          }
+        }
+      }
+    },
+    "TV screenshot": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screenshot della TV"
+          }
+        }
+      }
+    },
+    "Taking Screenshot": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acquisizione dello screenshot"
+          }
+        }
+      }
+    },
+    "Teal": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verde acqua"
+          }
+        }
+      }
+    },
+    "Terminal": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminale"
+          }
+        }
+      }
+    },
+    "Terminal %lld": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminale %lld"
+          }
+        }
+      }
+    },
+    "Testing sign-in with the certificate…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prova dell’accesso con il certificato…"
+          }
+        }
+      }
+    },
+    "The TV closed the connection during sign-in. Make sure Developer Mode is on and try again.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La TV ha chiuso la connessione durante l’accesso. Assicurati che Developer Mode sia attivo e riprova."
+          }
+        }
+      }
+    },
+    "The TV isn't responding. Make sure it's on and on the same network.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La TV non risponde. Assicurati che sia accesa e sulla stessa rete."
+          }
+        }
+      }
+    },
+    "The TV refused the request.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La TV ha rifiutato la richiesta."
+          }
+        }
+      }
+    },
+    "The TV rejected the sign-in. Check the user and credentials. With Developer Mode, also make sure the session is active and the key is up to date.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La TV ha rifiutato l’accesso. Controlla l’utente e le credenziali. Con Developer Mode, assicurati anche che la sessione sia attiva e la chiave aggiornata."
+          }
+        }
+      }
+    },
+    "The TV sent an invalid response.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La TV ha inviato una risposta non valida."
+          }
+        }
+      }
+    },
+    "The TV turns off and on again, which closes open terminals and file transfers.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La TV si spegne e si riaccende, chiudendo i terminali aperti e i trasferimenti di file."
+          }
+        }
+      }
+    },
+    "The TV's identity has changed since the last connection. If you reset the TV, use “Forget TV Identity” in its settings.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’identità della TV è cambiata dall’ultima connessione. Se hai inizializzato la TV, usa “Dimentica identità della TV” nelle sue impostazioni."
+          }
+        }
+      }
+    },
+    "The app always asks for the passcode when it opens, and when it returns from the background after the time you choose. %@ is unavailable because it isn't set up on this device.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’app chiede sempre il codice quando si apre e quando torna dal background dopo il tempo che scegli. %@ non è disponibile perché non è configurato su questo dispositivo."
+          }
+        }
+      }
+    },
+    "The app always asks for the passcode when it opens, and when it returns from the background after the time you choose. A forgotten passcode can't be recovered: the only way back in is to erase the app's data.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’app chiede sempre il codice quando si apre e quando torna dal background dopo il tempo che scegli. Un codice dimenticato non si può recuperare: l’unico modo per rientrare è inizializzare i dati dell’app."
+          }
+        }
+      }
+    },
+    "The app always asks for the passcode when it opens, and when it returns from the background after the time you choose. Face ID and Touch ID are unavailable because they aren't set up on this device.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’app chiede sempre il codice quando si apre e quando torna dal background dopo il tempo che scegli. Face ID e Touch ID non sono disponibili perché non sono configurati su questo dispositivo."
+          }
+        }
+      }
+    },
+    "The app and its data will be removed from the TV.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’app e i suoi dati verranno rimossi dalla TV."
+          }
+        }
+      }
+    },
+    "The command failed on the TV (code %lld).": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il comando non è riuscito sulla TV (codice %lld)."
+          }
+        }
+      }
+    },
+    "The connection closed before the TV reported whether the app was installed.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La connessione si è chiusa prima che la TV comunicasse se l’app è stata installata."
+          }
+        }
+      }
+    },
+    "The connection closed before the TV reported whether the app was uninstalled.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La connessione si è chiusa prima che la TV comunicasse se l’app è stata disinstallata."
+          }
+        }
+      }
+    },
+    "The credentials saved on this iPhone will be deleted. The TV won't be changed.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le credenziali salvate su questo iPhone verranno eliminate. La TV non verrà modificata."
+          }
+        }
+      }
+    },
+    "The downloaded package doesn't match the repository's checksum.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il pacchetto scaricato non corrisponde al checksum del repository."
+          }
+        }
+      }
+    },
+    "The key reached %@, but the TV didn't accept it for signing in, so the sign-in method stays the same. Developer Mode TVs only accept their own key, and older SSH servers may not support Ed25519.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La chiave è arrivata a %@, ma la TV non l’ha accettata per l’accesso, quindi il metodo di accesso resta lo stesso. Le TV con Developer Mode accettano solo la propria chiave e i server SSH meno recenti potrebbero non supportare Ed25519."
+          }
+        }
+      }
+    },
+    "The operation failed: %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Operazione non riuscita: %@"
+          }
+        }
+      }
+    },
+    "The passcodes didn't match. Try again.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I codici non corrispondono. Riprova."
+          }
+        }
+      }
+    },
+    "The private key will be deleted from this iPhone. Public keys already sent to TVs stay there.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La chiave privata verrà eliminata da questo iPhone. Le chiavi pubbliche già inviate alle TV restano sulle TV."
+          }
+        }
+      }
+    },
+    "The repositories you turned on don't have any apps.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I repository che hai attivato non contengono app."
+          }
+        }
+      }
+    },
+    "The repository request failed (HTTP %lld).": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Richiesta al repository non riuscita (HTTP %lld)."
+          }
+        }
+      }
+    },
+    "The repository sent invalid data.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il repository ha inviato dati non validi."
+          }
+        }
+      }
+    },
+    "The script contains the session token, so keep it somewhere private.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo script contiene il token della sessione, quindi tienilo in un posto privato."
+          }
+        }
+      }
+    },
+    "The session expires after a period set by LG, and the TV removes installed apps if it isn't renewed.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sessione scade dopo un periodo stabilito da LG e, se non viene rinnovata, la TV rimuove le app installate."
+          }
+        }
+      }
+    },
+    "There isn't enough space on the TV to install this app.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non c’è abbastanza spazio sulla TV per installare questa app."
+          }
+        }
+      }
+    },
+    "These settings need Homebrew Channel to have root. Open it on the TV to check its root status.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Queste impostazioni richiedono che Homebrew Channel abbia il root. Aprilo sulla TV per controllarne lo stato."
+          }
+        }
+      }
+    },
+    "This action can't be undone.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa azione non può essere annullata."
+          }
+        }
+      }
+    },
+    "This app doesn't collect data. Credentials stay in this iPhone's keychain and are used only to connect to your TVs.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa app non raccoglie dati. Le credenziali restano nel portachiavi di questo iPhone e vengono usate solo per connettersi alle tue TV."
+          }
+        }
+      }
+    },
+    "This app signs in to %@ with SSH. After the TV restarts, it can't connect until you turn SSH Server back on in Homebrew Channel on the TV.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa app accede a %@ tramite SSH. Dopo il riavvio della TV, non potrà connettersi finché non riattivi SSH Server in Homebrew Channel sulla TV."
+          }
+        }
+      }
+    },
+    "This private key format isn't supported. Use an RSA or Ed25519 key.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questo formato di chiave privata non è supportato. Usa una chiave RSA o Ed25519."
+          }
+        }
+      }
+    },
+    "Time Left": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo rimanente"
+          }
+        }
+      }
+    },
+    "Too many attempts. Try again in %lld s.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troppi tentativi. Riprova tra %lld s."
+          }
+        }
+      }
+    },
+    "Too many attempts. Try again later.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troppi tentativi. Riprova più tardi."
+          }
+        }
+      }
+    },
+    "Try Again": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riprova"
+          }
+        }
+      }
+    },
+    "Turn Off": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disattiva"
+          }
+        }
+      }
+    },
+    "Turn Off Passcode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disattiva codice"
+          }
+        }
+      }
+    },
+    "Turn Off SSH Server?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi disattivare il server SSH?"
+          }
+        }
+      }
+    },
+    "Turn On Developer Mode": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva Developer Mode"
+          }
+        }
+      }
+    },
+    "Turn on Developer Mode and wait for the TV to restart.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva Developer Mode e attendi il riavvio della TV."
+          }
+        }
+      }
+    },
+    "Turn on Key Server.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva Key Server."
+          }
+        }
+      }
+    },
+    "Turn on a repository to browse its apps.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva un repository per sfogliarne le app."
+          }
+        }
+      }
+    },
+    "Type": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo"
+          }
+        }
+      }
+    },
+    "Unavailable": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non disponibile"
+          }
+        }
+      }
+    },
+    "Uninstall": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disinstalla"
+          }
+        }
+      }
+    },
+    "Uninstall %@?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuoi disinstallare %@?"
+          }
+        }
+      }
+    },
+    "Uninstalling %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disinstallazione di %@"
+          }
+        }
+      }
+    },
+    "Unknown crash": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crash sconosciuto"
+          }
+        }
+      }
+    },
+    "Unknown error": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Errore sconosciuto"
+          }
+        }
+      }
+    },
+    "Unlock Dev Manager": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sblocca Dev Manager"
+          }
+        }
+      }
+    },
+    "Update": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiorna"
+          }
+        }
+      }
+    },
+    "Update %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiorna %@"
+          }
+        }
+      }
+    },
+    "Update Available": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiornamento disponibile"
+          }
+        }
+      }
+    },
+    "Update Key from TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiorna chiave dalla TV"
+          }
+        }
+      }
+    },
+    "Update available: %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiornamento disponibile: %@"
+          }
+        }
+      }
+    },
+    "Update to %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiorna a %@"
+          }
+        }
+      }
+    },
+    "Updating %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiornamento di %@"
+          }
+        }
+      }
+    },
+    "Updating the TV's sign-in method…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiornamento del metodo di accesso della TV…"
+          }
+        }
+      }
+    },
+    "Upload Files…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carica file…"
+          }
+        }
+      }
+    },
+    "Uploading to TV": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caricamento sulla TV"
+          }
+        }
+      }
+    },
+    "Use this only if you reset the TV and the app reports that its identity has changed.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usalo solo se hai inizializzato la TV e l’app segnala che la sua identità è cambiata."
+          }
+        }
+      }
+    },
+    "Used": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usato"
+          }
+        }
+      }
+    },
+    "User": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utente"
+          }
+        }
+      }
+    },
+    "Uses the Developer Mode app on the TV. No command line needed.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa l’app Developer Mode sulla TV. Non serve la riga di comando."
+          }
+        }
+      }
+    },
+    "Version": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versione"
+          }
+        }
+      }
+    },
+    "Version %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versione %@"
+          }
+        }
+      }
+    },
+    "Video Only": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo video"
+          }
+        }
+      }
+    },
+    "View logs and crash reports, and monitor the Luna bus": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visualizza log e report di crash e monitora il bus Luna"
+          }
+        }
+      }
+    },
+    "Waiting for calls…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In attesa di chiamate…"
+          }
+        }
+      }
+    },
+    "Waiting for messages…": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In attesa di messaggi…"
+          }
+        }
+      }
+    },
+    "What You Can Do": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cosa puoi fare"
+          }
+        }
+      }
+    },
+    "You can try again now.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ora puoi riprovare."
+          }
+        }
+      }
+    },
+    "You're about to remove Homebrew Channel. If the TV is rooted, you'll lose root immediately.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stai per rimuovere Homebrew Channel. Se la TV ha il root, lo perderai immediatamente."
+          }
+        }
+      }
+    },
+    "dmesg": {
+      "shouldTranslate": false
+    },
+    "https://…/apps.json": {
+      "shouldTranslate": false
+    },
+    "iOS stopped the operation because the app was in the background. Keep the app open until it finishes.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS ha interrotto l’operazione perché l’app era in background. Tieni l’app aperta finché non termina."
+          }
+        }
+      }
+    },
+    "ls-monitor": {
+      "shouldTranslate": false
+    },
+    "repo.webosbrew.org": {
+      "shouldTranslate": false
+    },
+    "repo.webosbrew.org for the Homebrew catalog, and developer.lge.com for Developer Mode status and renewal.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repo.webosbrew.org per il catalogo Homebrew e developer.lge.com per lo stato e il rinnovo di Developer Mode."
+          }
+        }
+      }
+    },
+    "webOS": {
+      "shouldTranslate": false
+    }
+  },
+  "version": "1.0"
+}

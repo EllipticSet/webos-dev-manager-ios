@@ -68,25 +68,25 @@ private struct DevModeChecklistView: View {
 
   private let steps = [
     Step(
-      title: "Prepare a Developer Account",
+      title: String(localized: "Prepare a Developer Account"),
       details: [
         "In your browser, open [LG’s Developer Mode guide](https://webostv.developer.lge.com/develop/getting-started/developer-mode-app).",
         "Select “SIGN IN” at the top right of the page.",
         "Create a free LG Developer account, or sign in if you already have one.",
       ]),
     Step(
-      title: "Install the Developer Mode App",
+      title: String(localized: "Install the Developer Mode App"),
       details: [
         "Open the LG Content Store on the TV.", "Search for “Developer Mode”.", "Select Install.",
       ]),
     Step(
-      title: "Turn On Developer Mode",
+      title: String(localized: "Turn On Developer Mode"),
       details: [
         "Open the Developer Mode app.", "Sign in with your developer account.",
         "Turn on Developer Mode and wait for the TV to restart.",
       ]),
     Step(
-      title: "Prepare the Connection",
+      title: String(localized: "Prepare the Connection"),
       details: [
         "Open the Developer Mode app again.", "Make sure “Dev Mode Status” is ON.",
         "Turn on Key Server.", "Note the IP address and passphrase shown on the screen.",

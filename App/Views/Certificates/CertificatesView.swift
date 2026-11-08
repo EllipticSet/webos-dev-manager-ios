@@ -4,18 +4,15 @@ struct CertificatesView: View {
   /// False in the sidebar, where there's nothing to dismiss.
   var isPresentedAsSheet = true
   @Environment(CertificateStore.self) private var certificates
-  @Environment(DeviceStore.self) private var devices
   @Environment(\.dismiss) private var dismiss
   @State private var isCreating = false
   @State private var certificateToDelete: SSHCertificate?
-  @State private var blockedMessage: String?
 
   var body: some View {
     NavigationStack {
       List(certificates.certificates) { certificate in
-        NavigationLink {
-          CertificateDetailView(certificateID: certificate.id)
-        } label: {
+        // Pushed with a value, so that it doesn't stay in place when another sidebar row is chosen.
+        NavigationLink(value: certificate.id) {
           Label {
             VStack(alignment: .leading, spacing: 2) {
               Text(certificate.name)
@@ -28,7 +25,7 @@ struct CertificatesView: View {
           }
         }
         .swipeActions {
-          Button("Delete", systemImage: "trash", role: .destructive) { requestDelete(certificate) }
+          Button("Delete", systemImage: "trash") { certificateToDelete = certificate }
             .tint(.red)
         }
       }
@@ -56,41 +53,9 @@ struct CertificatesView: View {
           Button("New Certificate", systemImage: "plus") { isCreating = true }
         }
       }
+      .navigationDestination(for: SSHCertificate.ID.self) { CertificateDetailView(certificateID: $0) }
       .sheet(isPresented: $isCreating) { NewCertificateView() }
-      .confirmationDialog(
-        "Delete \(certificateToDelete?.name ?? "Certificate")?", isPresented: isConfirmingDelete,
-        titleVisibility: .visible, presenting: certificateToDelete
-      ) { certificate in
-        Button("Delete", role: .destructive) { certificates.remove(certificate) }
-      } message: { _ in
-        Text("The private key will be deleted from this iPhone. Public keys already sent to TVs stay there.")
-      }
-      .alert("Certificate in Use", isPresented: isShowingBlocked) {
-        Button("OK", role: .cancel) {}
-      } message: {
-        Text(blockedMessage ?? "")
-      }
-    }
-  }
-
-  private var isConfirmingDelete: Binding<Bool> {
-    Binding { certificateToDelete != nil } set: { if !$0 { certificateToDelete = nil } }
-  }
-
-  private var isShowingBlocked: Binding<Bool> {
-    Binding { blockedMessage != nil } set: { if !$0 { blockedMessage = nil } }
-  }
-
-  /// A TV signing in with this certificate would be locked out if it were deleted.
-  private func requestDelete(_ certificate: SSHCertificate) {
-    let users = devices.devices.filter {
-      $0.authentication == .certificate && $0.certificateID == certificate.id
-    }
-    if users.isEmpty {
-      certificateToDelete = certificate
-    } else {
-      let names = users.map(\.name).formatted(.list(type: .and))
-      blockedMessage = "\(names) signs in with this certificate. Change its sign-in method first."
+      .certificateDeletion($certificateToDelete)
     }
   }
 }

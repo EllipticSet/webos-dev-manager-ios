@@ -26,8 +26,12 @@ final class OperationCenter {
 
   typealias Progress = @Sendable (Double?, String) -> Void
 
-  func run(_ title: String, operation: @escaping (@escaping Progress) async throws -> Void) {
+  func run(
+    _ title: LocalizedStringResource,
+    operation: @escaping (@escaping Progress) async throws -> Void
+  ) {
     guard activity == nil else { return }
+    let title = String(localized: title)
     activity = Activity(title: title)
     let id = activity?.id
     let background = BackgroundTime()
@@ -52,7 +56,7 @@ final class OperationCenter {
         if didRunOutOfBackgroundTime {
           failure = Failure(
             title: title,
-            message: "iOS stopped the operation because the app was in the background. Keep the app open until it finishes.")
+            message: String(localized: "iOS stopped the operation because the app was in the background. Keep the app open until it finishes."))
         } else if !(error is CancellationError), !Task.isCancelled {
           failure = Failure(title: title, message: DeviceError.message(for: error))
         }

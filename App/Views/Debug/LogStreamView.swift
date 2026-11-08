@@ -87,11 +87,10 @@ struct LogStreamView: View {
         Button("Clear Log", systemImage: "trash") { isConfirmingClear = true }
       }
     }
-    .confirmationDialog(
-      "Clear the Log on the TV?", isPresented: $isConfirmingClear, titleVisibility: .visible
-    ) {
-      Button("Clear", role: .destructive) { clear() }
-    }
+    .confirmationAlert(
+      "Clear the Log on the TV?", isPresented: $isConfirmingClear, actionTitle: "Clear",
+      role: .destructive
+    ) { clear() }
     .task { await stream() }
     .task {
       while !Task.isCancelled {
