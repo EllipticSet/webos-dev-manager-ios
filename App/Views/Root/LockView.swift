@@ -27,7 +27,7 @@ struct LockView: View {
       Spacer(minLength: 0)
       VStack(spacing: 14) {
         if lock.biometricsEnabled && lock.isBiometryAvailable {
-          Button(lock.biometryName, systemImage: "faceid") {
+          Button(lock.biometryName, systemImage: lock.biometrySymbol) {
             Task { await lock.unlockWithBiometrics() }
           }
         }
@@ -46,10 +46,9 @@ struct LockView: View {
       try? await Task.sleep(until: .now + .seconds(until.timeIntervalSinceNow))
       lockoutRefresh += 1
     }
-    .confirmationDialog(
-      "Erase All Data?", isPresented: $isConfirmingErase, titleVisibility: .visible
-    ) {
+    .alert("Erase All Data?", isPresented: $isConfirmingErase) {
       Button("Erase Data and Passcode", role: .destructive, action: eraseEverything)
+      Button("Cancel", role: .cancel) {}
     } message: {
       Text("A forgotten passcode can't be recovered. This removes the passcode, saved TVs, and certificates from this iPhone. Your TVs aren't changed.")
     }
@@ -65,7 +64,7 @@ struct LockView: View {
     if let until = lock.lockedUntil, until > .now {
       TimelineView(.periodic(from: .now, by: 1)) { context in
         let seconds = Int(until.timeIntervalSince(context.date).rounded(.up))
-        Text(seconds > 0 ? "Too many attempts. Try again in \(seconds) s." : "You can try again now.")
+        Text(seconds > 0 ? String(localized: "Too many attempts. Try again in \(seconds) s.") : String(localized: "You can try again now."))
           .foregroundStyle(.secondary)
       }
       .font(.subheadline)

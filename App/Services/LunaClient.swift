@@ -52,7 +52,7 @@ struct LunaClient: Sendable {
 
   static func error(in response: LunaResponse, falseAsError: Bool) -> DeviceError? {
     guard response["returnValue"] as? Bool == false else { return nil }
-    let text = response["errorText"] as? String ?? "The TV refused the request."
+    let text = response["errorText"] as? String ?? String(localized: "The TV refused the request.")
     if text.hasPrefix("Unknown method") { return .lunaUnknownMethod(text) }
     if text.hasPrefix("Service does not exist") { return .lunaServiceNotFound(text) }
     return falseAsError ? .lunaResponse(text) : nil

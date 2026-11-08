@@ -59,9 +59,9 @@ enum ScreenshotMethod: String, CaseIterable, Identifiable {
 
   var title: String {
     switch self {
-    case .display: "Full Screen"
-    case .video: "Video Only"
-    case .graphic: "Graphics Only"
+    case .display: String(localized: "Full Screen")
+    case .video: String(localized: "Video Only")
+    case .graphic: String(localized: "Graphics Only")
     }
   }
 }

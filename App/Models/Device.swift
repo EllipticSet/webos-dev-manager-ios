@@ -25,10 +25,10 @@ enum DeviceAuthentication: String, Codable, CaseIterable, Identifiable, Sendable
 
   var title: String {
     switch self {
-    case .devModeKey: "Developer Mode Key"
-    case .importedKey: "Private Key"
-    case .password: "Password"
-    case .certificate: "Saved Certificate"
+    case .devModeKey: String(localized: "Developer Mode Key")
+    case .importedKey: String(localized: "Private Key")
+    case .password: String(localized: "Password")
+    case .certificate: String(localized: "Saved Certificate")
     }
   }
 }
@@ -49,17 +49,17 @@ enum DeviceSetupMode: String, CaseIterable, Identifiable {
 
   var title: String {
     switch self {
-    case .developerMode: "Developer Mode"
-    case .rooted: "Rooted TV"
-    case .advanced: "Manual Setup"
+    case .developerMode: String(localized: "Developer Mode")
+    case .rooted: String(localized: "Rooted TV")
+    case .advanced: String(localized: "Manual Setup")
     }
   }
 
   var summary: String {
     switch self {
-    case .developerMode: "Uses the Developer Mode app on the TV. No command line needed."
-    case .rooted: "Sign in as root with the password or key you set up."
-    case .advanced: "Choose the port, user, and sign-in method."
+    case .developerMode: String(localized: "Uses the Developer Mode app on the TV. No command line needed.")
+    case .rooted: String(localized: "Sign in as root with the password or key you set up.")
+    case .advanced: String(localized: "Choose the port, user, and sign-in method.")
     }
   }
 

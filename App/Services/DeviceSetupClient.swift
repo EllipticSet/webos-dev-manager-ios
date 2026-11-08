@@ -81,7 +81,7 @@ struct DeviceSetupClient: Sendable {
     let session: DevModeSessionResponse = try await devModeRequest(
       "ResetDevModeSession.dev", token: token)
     guard session.result == "success" else {
-      throw DeviceError.repository(session.errorMsg ?? "Renewal failed.")
+      throw DeviceError.repository(session.errorMsg ?? String(localized: "Renewal failed."))
     }
   }
 

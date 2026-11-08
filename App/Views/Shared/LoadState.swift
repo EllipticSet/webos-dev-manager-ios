@@ -28,14 +28,16 @@ struct ErrorStateView: View {
 
 /// A plain value row, with the value selectable so it can be copied.
 struct DetailRow: View {
-  var title: LocalizedStringKey
+  var title: LocalizedStringResource
   var value: String
 
   var body: some View {
-    LabeledContent(title) {
+    LabeledContent {
       Text(value)
         .textSelection(.enabled)
         .multilineTextAlignment(.trailing)
+    } label: {
+      Text(title)
     }
   }
 }

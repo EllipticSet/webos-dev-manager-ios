@@ -15,7 +15,9 @@ struct DevicesView: View {
         ForEach(store.devices) { device in
           row(for: device)
             .swipeActions(edge: .trailing) {
-              Button("Remove", systemImage: "trash", role: .destructive) { deviceToRemove = device }
+              // Without the destructive role, which would remove the row before the removal is
+              // confirmed, and leave it out if it's canceled.
+              Button("Remove", systemImage: "trash") { deviceToRemove = device }
                 .tint(.red)
             }
         }
@@ -46,14 +48,13 @@ struct DevicesView: View {
         }
       }
       .sheet(isPresented: $isAdding) { AddDeviceFlow() }
-      .confirmationDialog(
-        "Remove This TV?", isPresented: isConfirmingRemoval, titleVisibility: .visible,
-        presenting: deviceToRemove
-      ) { device in
-        Button("Remove \(device.name)", role: .destructive) { store.remove(device) }
-      } message: { _ in
-        Text("The credentials saved on this iPhone will be deleted. The TV won't be changed.")
-      }
+      // The name goes in the title, which wraps, rather than in the button, which a long name
+      // would truncate.
+      .confirmationAlert(
+        { "Remove “\($0.name)”?" }, presenting: $deviceToRemove,
+        message: { _ in "The credentials saved on this iPhone will be deleted. The TV won't be changed." },
+        actionTitle: "Remove", role: .destructive
+      ) { store.remove($0) }
     }
   }
 
@@ -86,9 +87,5 @@ struct DevicesView: View {
         .labelStyle(.iconOnly)
         .buttonStyle(.borderless)
     }
-  }
-
-  private var isConfirmingRemoval: Binding<Bool> {
-    Binding { deviceToRemove != nil } set: { if !$0 { deviceToRemove = nil } }
   }
 }

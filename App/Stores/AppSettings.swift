@@ -8,15 +8,15 @@ enum AccentChoice: String, CaseIterable, Identifiable {
 
   var title: String {
     switch self {
-    case .lgRed: "LG Red"
-    case .blue: "Blue"
-    case .indigo: "Indigo"
-    case .purple: "Purple"
-    case .pink: "Pink"
-    case .orange: "Orange"
-    case .green: "Green"
-    case .teal: "Teal"
-    case .custom: "Custom"
+    case .lgRed: String(localized: "LG Red")
+    case .blue: String(localized: "Blue")
+    case .indigo: String(localized: "Indigo")
+    case .purple: String(localized: "Purple")
+    case .pink: String(localized: "Pink")
+    case .orange: String(localized: "Orange")
+    case .green: String(localized: "Green")
+    case .teal: String(localized: "Teal")
+    case .custom: String(localized: "Custom")
     }
   }
 }

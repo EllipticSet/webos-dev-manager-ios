@@ -44,7 +44,7 @@ struct RepositoriesView: View {
           isAdding = true
         }
       } header: {
-        Text("Custom")
+        Text(LocalizedStringResource("Repositories.Custom", defaultValue: "Custom"))
       } footer: {
         Text(customFooter)
       }
@@ -70,10 +70,10 @@ struct RepositoriesView: View {
   }
 
   private var customFooter: String {
-    let base = "Custom repositories are used by this app's catalog."
-    guard hasHomebrewChannel else { return base }
-    return base
-      + " To use one in Homebrew Channel too, choose Add to TV and confirm on the TV. Remove repositories from the TV in Homebrew Channel's settings."
+    guard hasHomebrewChannel else {
+      return String(localized: "Custom repositories are used by this app's catalog.")
+    }
+    return String(localized: "Custom repositories are used by this app's catalog. To use one in Homebrew Channel too, choose Add to TV and confirm on the TV. Remove repositories from the TV in Homebrew Channel's settings.")
   }
 
   private func row(for source: RepositorySource) -> some View {
@@ -115,12 +115,14 @@ struct RepositoriesView: View {
   private func add() {
     guard let url = RepositorySource.customURL(from: address) else {
       operations.failure = .init(
-        title: "Invalid Address", message: "Enter a web address, such as https://example.com/api/apps.json.")
+        title: String(localized: "Invalid Address"),
+        message: String(localized: "Enter a web address, such as https://example.com/api/apps.json."))
       return
     }
     guard !repositories.contains(url) else {
       operations.failure = .init(
-        title: "Already Added", message: "\(url.absoluteString) is already in the list.")
+        title: String(localized: "Already Added"),
+        message: String(localized: "\(url.absoluteString) is already in the list."))
       return
     }
     let repositories = repositories

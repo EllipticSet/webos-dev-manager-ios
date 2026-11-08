@@ -16,9 +16,7 @@ struct CrashReportsView: View {
         ErrorStateView(message: message) { Task { await load() } }
       case .loaded(let items):
         List(items) { report in
-          NavigationLink {
-            CrashReportDetailView(report: report, service: service)
-          } label: {
+          NavigationLink(value: DebugDestination.crashReport(report)) {
             VStack(alignment: .leading, spacing: 2) {
               Text(report.title).lineLimit(2)
               if !report.summary.isEmpty {
@@ -35,7 +33,7 @@ struct CrashReportsView: View {
             }
           }
           .swipeActions {
-            Button("Delete", systemImage: "trash", role: .destructive) { reportToDelete = report }
+            Button("Delete", systemImage: "trash") { reportToDelete = report }
               .tint(.red)
           }
         }
@@ -50,16 +48,10 @@ struct CrashReportsView: View {
     .navigationTitle("Crash Reports")
     .navigationBarTitleDisplayMode(.inline)
     .task { await load() }
-    .confirmationDialog(
-      "Delete This Crash Report?", isPresented: isConfirmingDelete, titleVisibility: .visible,
-      presenting: reportToDelete
-    ) { report in
-      Button("Delete", role: .destructive) { delete(report) }
-    }
-  }
-
-  private var isConfirmingDelete: Binding<Bool> {
-    Binding { reportToDelete != nil } set: { if !$0 { reportToDelete = nil } }
+    .confirmationAlert(
+      { _ in "Delete This Crash Report?" }, presenting: $reportToDelete, actionTitle: "Delete",
+      role: .destructive
+    ) { delete($0) }
   }
 
   private func load() async {
@@ -90,7 +82,7 @@ struct CrashReportsView: View {
   }
 }
 
-private struct CrashReportDetailView: View {
+struct CrashReportDetailView: View {
   var report: CrashReport
   var service: DeviceService
 

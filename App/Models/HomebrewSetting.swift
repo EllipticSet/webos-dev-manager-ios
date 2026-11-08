@@ -13,18 +13,18 @@ enum HomebrewSetting: String, CaseIterable, Identifiable {
   var title: String {
     switch self {
     case .telnet: "Telnet"
-    case .sshServer: "SSH Server"
-    case .blockSystemUpdates: "Block System Updates"
-    case .failsafeMode: "Failsafe Mode"
+    case .sshServer: String(localized: "SSH Server")
+    case .blockSystemUpdates: String(localized: "Block System Updates")
+    case .failsafeMode: String(localized: "Failsafe Mode")
     }
   }
 
   var details: String? {
     switch self {
     case .telnet, .sshServer: nil
-    case .blockSystemUpdates: "Keeps LG firmware updates, which can remove root, from installing."
+    case .blockSystemUpdates: String(localized: "Keeps LG firmware updates, which can remove root, from installing.")
     case .failsafeMode:
-      "Disables all early system modifications and leaves recovery telnet running. Turns on by itself if the TV restarts or crashes during early startup."
+      String(localized: "Disables all early system modifications and leaves recovery telnet running. Turns on by itself if the TV restarts or crashes during early startup.")
     }
   }
 

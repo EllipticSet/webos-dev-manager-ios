@@ -95,12 +95,11 @@ struct DirectoryView: View {
       .onChange(of: previewURL) { previous, current in
         if let previous, current == nil { TemporaryFiles.remove(previous) }
       }
-      .alert(replaceTitle, isPresented: isConfirmingReplace, presenting: uploadsToConfirm) { urls in
-        Button("Replace", role: .destructive) { startUpload(urls) }
-        Button("Cancel", role: .cancel) {}
-      } message: { _ in
-        Text("Files with the same name in this folder will be overwritten.")
-      }
+      .confirmationAlert(
+        replaceTitle, presenting: confirmation(of: $uploadsToConfirm),
+        message: { _ in "Files with the same name in this folder will be overwritten." },
+        actionTitle: "Replace", role: .destructive
+      ) { startUpload($0) }
       .alert("New Folder", isPresented: $isCreatingFolder) {
         TextField("Name", text: $newFolderName)
         Button("Create") { createFolder() }
@@ -115,13 +114,10 @@ struct DirectoryView: View {
       } message: {
         Text("Enter an absolute path, such as /media/developer.")
       }
-      .confirmationDialog(
-        deleteTitle, isPresented: isConfirmingDelete, titleVisibility: .visible
-      ) {
-        Button("Delete", role: .destructive) { delete(filesToDelete) }
-      } message: {
-        Text("This action can't be undone.")
-      }
+      .confirmationAlert(
+        deleteTitle, presenting: confirmation(of: $filesToDelete),
+        message: { _ in "This action can't be undone." }, actionTitle: "Delete", role: .destructive
+      ) { delete($0) }
   }
 
   @ViewBuilder
@@ -221,7 +217,7 @@ struct DirectoryView: View {
       }
     }
     .swipeActions {
-      Button("Delete", systemImage: "trash", role: .destructive) { filesToDelete = [file] }
+      Button("Delete", systemImage: "trash") { filesToDelete = [file] }
         .tint(.red)
       if !file.isDirectory {
         Button("Download", systemImage: "square.and.arrow.down") { download([file]) }
@@ -236,13 +232,15 @@ struct DirectoryView: View {
     }
   }
 
-  private var deleteTitle: String {
-    filesToDelete.count == 1
-      ? "Delete \(filesToDelete[0].name)?" : "Delete \(filesToDelete.count) Items?"
+  private func deleteTitle(_ files: [RemoteFile]) -> LocalizedStringResource {
+    files.count == 1 ? "Delete “\(files[0].name)”?" : "Delete \(files.count) Items?"
   }
 
-  private var isConfirmingDelete: Binding<Bool> {
-    Binding { !filesToDelete.isEmpty } set: { if !$0 { filesToDelete = [] } }
+  /// Presents a confirmation while `items` isn't empty.
+  private func confirmation<Item>(of items: Binding<[Item]>) -> Binding<[Item]?> {
+    Binding { items.wrappedValue.isEmpty ? nil : items.wrappedValue } set: {
+      items.wrappedValue = $0 ?? []
+    }
   }
 
   private func load() async {
@@ -307,13 +305,8 @@ struct DirectoryView: View {
     }
   }
 
-  private var replaceTitle: String {
-    uploadsToConfirm.count == 1
-      ? "Replace \(uploadsToConfirm[0].lastPathComponent)?" : "Replace Existing Files?"
-  }
-
-  private var isConfirmingReplace: Binding<Bool> {
-    Binding { !uploadsToConfirm.isEmpty } set: { if !$0 { uploadsToConfirm = [] } }
+  private func replaceTitle(_ urls: [URL]) -> LocalizedStringResource {
+    urls.count == 1 ? "Replace “\(urls[0].lastPathComponent)”?" : "Replace Existing Files?"
   }
 
   private func startUpload(_ urls: [URL]) {

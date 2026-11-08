@@ -1,5 +1,9 @@
 import SwiftUI
 
+private enum InfoDestination: Hashable {
+  case rootSettings
+}
+
 struct InfoView: View {
   var device: Device
 
@@ -34,6 +38,11 @@ struct InfoView: View {
       .task { if details.value == nil { await load() } }
       .sheet(item: $screenshot) { ScreenshotView(screenshot: $0) }
       .sheet(item: $renewalScript) { RenewalScriptView(script: $0) }
+      // Pushed with a value, like the other tabs' screens, so that it doesn't stay in place when
+      // another sidebar row is chosen.
+      .navigationDestination(for: InfoDestination.self) { _ in
+        HomebrewSettingsView(device: device, service: service)
+      }
     }
   }
 
@@ -58,7 +67,9 @@ struct InfoView: View {
           // The separator otherwise starts where the centered label does.
           .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
           let free = Measurement(value: Double(storage.availableKilobytes), unit: UnitInformationStorage.kilobytes)
-          DetailRow(title: "Available", value: free.formatted(.byteCount(style: .file)))
+          DetailRow(
+            title: LocalizedStringResource("Storage.Available", defaultValue: "Available"),
+            value: free.formatted(.byteCount(style: .file)))
         }
       }
 
@@ -101,7 +112,7 @@ struct InfoView: View {
     } else if let remaining = devMode?.remaining {
       DetailRow(title: "Time Left", value: remaining)
     } else {
-      DetailRow(title: "Time Left", value: devMode == nil ? "Checking…" : "Unavailable")
+      DetailRow(title: "Time Left", value: devMode == nil ? String(localized: "Checking…") : String(localized: "Unavailable"))
     }
   }
 
@@ -111,10 +122,8 @@ struct InfoView: View {
       if let homebrewApp {
         DetailRow(title: "Version", value: homebrewApp.version)
         if let root = homebrewConfig?.root {
-          DetailRow(title: "Root", value: root ? "Active" : "Inactive")
-          NavigationLink {
-            HomebrewSettingsView(device: device, service: service)
-          } label: {
+          DetailRow(title: "Root", value: root ? String(localized: "Active") : String(localized: "Inactive"))
+          NavigationLink(value: InfoDestination.rootSettings) {
             Label("Root Settings", systemImage: "slider.horizontal.3")
           }
         }
@@ -124,7 +133,7 @@ struct InfoView: View {
           }
         }
       } else {
-        DetailRow(title: "Status", value: "Not Installed")
+        DetailRow(title: "Status", value: String(localized: "Not Installed"))
         if let manifest = homebrewRelease?.manifest {
           Button("Install Homebrew Channel", systemImage: "square.and.arrow.down") {
             installHomebrew(manifest)

@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.5.0
+
+### Added
+- **Italian**: the whole app is available in Italian, including error messages, Developer Mode setup and the permission prompts. It follows the language set on the iPhone, or the one chosen for Dev Manager in Settings › Apps. App names and descriptions from repositories, and messages from the TV, stay as their source provides them.
+- A Delete Certificate button at the bottom of a certificate's page. As when swiping it in the list, a certificate that a TV signs in with can't be deleted until that TV uses another sign-in method.
+- Terminal shows the open sessions in a bar at the top, so you can see which one is in use and how many are open, and switch between them with a tap. A dot shows whether each one is connecting, connected or disconnected.
+
+### Changed
+- Confirmations such as Uninstall, Remove, Delete, Replace and Clear Log appear as an alert in the center of the screen instead of a bubble that, on wider screens, didn't line up with the button you tapped.
+- Confirmations show the name of the TV, certificate or file in the title, where a long name wraps, and keep the button short.
+- On iPhone Duo partially folded, confirmations, the certificate messages and the progress panel of an operation appear on the right half when you hold it like a book, and on the top half when it stands like a laptop.
+- A terminal session closes by itself when its shell ends, such as after `exit`, instead of showing "Session ended" with Reconnect, and the next open session takes its place. When the connection fails, the error and Reconnect still appear.
+- The message shown when deleting a certificate that a TV signs in with explains that the TV couldn't connect without it.
+- The project's tests check that every Italian string keeps the placeholders of its English text, so a translation can't show wrong values.
+
+### Fixed
+- With a passcode on, the biometry setting and the lock screen name the device's own biometry, such as Touch ID on iPhone Duo, instead of "Face ID or Touch ID", also when it isn't set up yet.
+- In the sidebar on iPhone Duo's inner display, choosing another section now works after opening a page inside a section, such as an app's page, Root Settings or a crash report.
+- Canceling a removal started by swiping a row no longer hides the row until the list reloads.
+
 ## 1.4.2
 
 ### Added

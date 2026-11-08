@@ -22,7 +22,7 @@ struct RepositorySource: Identifiable, Hashable, Sendable {
   var title: String {
     switch kind {
     case .official: "webOS Homebrew"
-    case .nonFree: "Non-Free Software"
+    case .nonFree: String(localized: "Non-Free Software")
     case .custom: url.host() ?? url.absoluteString
     }
   }

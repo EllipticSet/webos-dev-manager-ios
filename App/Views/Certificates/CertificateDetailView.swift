@@ -9,6 +9,8 @@ struct CertificateDetailView: View {
   @State private var progress: SendProgress?
   @State private var result: SendResult?
   @State private var didCopy = false
+  @State private var certificateToDelete: SSHCertificate?
+  @Environment(\.dismiss) private var dismiss
 
   private var certificate: SSHCertificate? {
     certificates.certificates.first { $0.id == certificateID }
@@ -46,7 +48,7 @@ struct CertificateDetailView: View {
         }
 
         Section {
-          Button(didCopy ? "Copied" : "Copy Public Key", systemImage: "doc.on.doc") {
+          Button(didCopy ? String(localized: "Copied") : String(localized: "Copy Public Key"), systemImage: "doc.on.doc") {
             UIPasteboard.general.string = certificate.publicKey
             didCopy = true
           }
@@ -55,6 +57,13 @@ struct CertificateDetailView: View {
           Text("Public Key")
         } footer: {
           Text("Only the public key leaves this iPhone. Sending it to a TV also makes that TV sign in with this certificate, if the TV accepts it.")
+        }
+
+        Section {
+          Button("Delete Certificate", systemImage: "trash", role: .destructive) {
+            certificateToDelete = certificate
+          }
+          .disabled(progress != nil)
         }
       }
       .navigationTitle(certificate.name)
@@ -67,18 +76,9 @@ struct CertificateDetailView: View {
       }
       .interactiveDismissDisabled(progress != nil)
       .navigationBarBackButtonHidden(progress != nil)
-      .alert(
-        result?.title ?? "", isPresented: isShowingResult, presenting: result
-      ) { _ in
-        Button("OK", role: .cancel) {}
-      } message: { result in
-        Text(result.message)
-      }
+      .certificateDeletion($certificateToDelete) { dismiss() }
+      .noticeAlert(\.title, presenting: $result, message: \.message)
     }
-  }
-
-  private var isShowingResult: Binding<Bool> {
-    Binding { result != nil } set: { if !$0 { result = nil } }
   }
 
   private func nameBinding(for certificate: SSHCertificate) -> Binding<String> {
@@ -125,7 +125,7 @@ struct CertificateDetailView: View {
   }
 
   private func send(_ certificate: SSHCertificate, to device: Device) {
-    progress = SendProgress(deviceName: device.name, fraction: 0.1, status: "Connecting to the TV…")
+    progress = SendProgress(deviceName: device.name, fraction: 0.1, status: String(localized: "Connecting to the TV…"))
     let service = devices.service(for: device)
     let command = certificate.installCommand
     Task {
@@ -133,13 +133,13 @@ struct CertificateDetailView: View {
       do {
         // Without a limit, a TV that stops responding would leave the progress on screen forever.
         _ = try await withTimeout(seconds: 30) { try await service.session.run("true") }
-        await update(0.4, "Sending the public key…")
+        await update(0.4, String(localized: "Sending the public key…"))
         _ = try await withTimeout(seconds: 30) { try await service.session.run(command) }
         certificates.markSent(certificate.id, to: device.id)
-        await update(0.7, "Testing sign-in with the certificate…")
+        await update(0.7, String(localized: "Testing sign-in with the certificate…"))
       } catch {
         result = SendResult(
-          title: "Couldn't Send the Certificate", message: DeviceError.message(for: error))
+          title: "Couldn't Send the Certificate", message: "\(DeviceError.message(for: error))")
         return
       }
 
@@ -151,7 +151,7 @@ struct CertificateDetailView: View {
       do {
         _ = try await withTimeout(seconds: 30) { try await test.run("true") }
         await test.disconnect()
-        await update(1, "Updating the TV's sign-in method…")
+        await update(1, String(localized: "Updating the TV's sign-in method…"))
         // The previous credentials stay saved, so the method can be switched back.
         try devices.save(candidate, secrets: devices.secrets(for: device))
         result = SendResult(
@@ -184,8 +184,8 @@ private struct SendProgress {
 
 private struct SendResult: Identifiable {
   var id = UUID()
-  var title: String
-  var message: String
+  var title: LocalizedStringResource
+  var message: LocalizedStringResource
 }
 
 private struct SendProgressCard: View {

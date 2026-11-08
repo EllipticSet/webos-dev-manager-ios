@@ -165,7 +165,7 @@ struct DeviceService: Sendable {
     let stream = try luna.subscribe(
       "luna://com.webos.appInstallService/dev/remove",
       parameters: ["id": appID, "subscribe": true])
-    try await waitForResult(of: stream, operation: "uninstall") {
+    try await waitForResult(of: stream, isUninstall: true) {
       try Self.isFinished(appInstallResponse: $0, expected: /removed/.ignoresCase())
     }
   }
@@ -205,11 +205,11 @@ struct DeviceService: Sendable {
     manifest: PackageManifest, progress: @escaping @Sendable (Double?, String) -> Void
   ) async throws {
     guard let source = URL(string: manifest.ipkUrl) else { throw DeviceError.invalidResponse }
-    progress(nil, "Downloading IPK to iPhone…")
+    progress(nil, String(localized: "Downloading IPK to iPhone…"))
     let (location, response) = try await URLSession.shared.download(from: source)
     defer { try? FileManager.default.removeItem(at: location) }
     if let http = response as? HTTPURLResponse, http.statusCode != 200 {
-      throw DeviceError.repository("Download failed (HTTP \(http.statusCode)).")
+      throw DeviceError.repository(String(localized: "Download failed (HTTP \(http.statusCode))."))
     }
     try Self.verify(fileAt: location, sha256: manifest.ipkHash?.sha256)
     let path = try await upload(location, progress: progress)
@@ -227,7 +227,7 @@ struct DeviceService: Sendable {
     }
     let digest = hasher.finalize().map { String(format: "%02x", $0) }.joined()
     guard digest == expected.lowercased() else {
-      throw DeviceError.repository("The downloaded package doesn't match the repository's checksum.")
+      throw DeviceError.repository(String(localized: "The downloaded package doesn't match the repository's checksum."))
     }
   }
 
@@ -237,9 +237,9 @@ struct DeviceService: Sendable {
     try await session.run(
       "mkdir -p \(Self.temporaryIPKDirectory) && chmod 777 \(Self.temporaryIPKDirectory)")
     let path = "\(Self.temporaryIPKDirectory)/devman_dl_\(UUID().uuidString).ipk"
-    progress(nil, "Sending IPK to TV…")
+    progress(nil, String(localized: "Sending IPK to TV…"))
     do {
-      try await session.upload(url, to: path) { progress($0, "Sending IPK to TV…") }
+      try await session.upload(url, to: path) { progress($0, String(localized: "Sending IPK to TV…")) }
     } catch {
       // Separate from this task, which may be the one that was cancelled.
       Task { try? await session.remove(path, recursive: false) }
@@ -252,11 +252,11 @@ struct DeviceService: Sendable {
     remotePath: String, progress: @escaping @Sendable (Double?, String) -> Void
   ) async throws {
     defer { Task { try? await session.remove(remotePath, recursive: false) } }
-    progress(nil, "Installing on TV…")
+    progress(nil, String(localized: "Installing on TV…"))
     let stream = try luna.subscribe(
       "luna://com.webos.appInstallService/dev/install",
       parameters: ["id": "com.ares.defaultName", "ipkUrl": remotePath, "subscribe": true])
-    try await waitForResult(of: stream, operation: "install") {
+    try await waitForResult(of: stream, isUninstall: false) {
       try Self.isFinished(appInstallResponse: $0, expected: /installed/.ignoresCase())
     }
   }
@@ -268,9 +268,9 @@ struct DeviceService: Sendable {
     if let hash = manifest.ipkHash?.sha256 { parameters["ipkHash"] = hash }
     let stream = try luna.subscribe(
       "luna://org.webosbrew.hbchannel.service/install", parameters: parameters)
-    try await waitForResult(of: stream, operation: "install") { response in
+    try await waitForResult(of: stream, isUninstall: false) { response in
       if response["returnValue"] as? Bool == false {
-        let text = response["errorText"] as? String ?? "Unknown error"
+        let text = response["errorText"] as? String ?? String(localized: "Unknown error")
         if text.wholeMatch(of: /.*-5: +FAILED_IPKG_INSTALL.*/) != nil {
           throw DeviceError.insufficientSpace
         }
@@ -281,7 +281,7 @@ struct DeviceService: Sendable {
         return true
       }
       let fraction = (response["progress"] as? Double).map { $0 / 100 }
-      progress(fraction, response["statusText"] as? String ?? "Installing on TV…")
+      progress(fraction, response["statusText"] as? String ?? String(localized: "Installing on TV…"))
       return false
     }
   }
@@ -300,14 +300,14 @@ struct DeviceService: Sendable {
       throw DeviceError.installFailed(state)
     }
     if response["returnValue"] as? Bool == false {
-      throw DeviceError.installFailed(response["errorText"] as? String ?? "Unknown error")
+      throw DeviceError.installFailed(response["errorText"] as? String ?? String(localized: "Unknown error"))
     }
     return state.uppercased().hasPrefix("SUCCESS") || state.firstMatch(of: expected) != nil
   }
 
   /// Waits for a final response. Installs can take minutes, so only silence counts as a timeout.
   private func waitForResult(
-    of stream: AsyncThrowingStream<LunaResponse, Error>, operation: String,
+    of stream: AsyncThrowingStream<LunaResponse, Error>, isUninstall: Bool,
     isFinished: @escaping @Sendable (LunaResponse) throws -> Bool
   ) async throws {
     let activity = ActivityClock()
@@ -319,8 +319,7 @@ struct DeviceService: Sendable {
           if try isFinished(response) { return }
         }
         try Task.checkCancellation()
-        throw DeviceError.installFailed(
-          "the connection closed before the TV reported the \(operation) result.")
+        throw DeviceError.resultNotReported(isUninstall: isUninstall)
       }
       group.addTask {
         while activity.secondsSinceLastTouch < Self.responseTimeout {

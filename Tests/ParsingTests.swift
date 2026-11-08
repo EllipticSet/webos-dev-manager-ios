@@ -190,7 +190,7 @@ struct DeviceOutputTests {
     #expect(report.title == "com.app (123)")
     #expect(report.summary == "main")
     let unknown = CrashReport(file: RemoteFile(name: "weird", path: "/c/g", kind: .file))
-    #expect(unknown.title == "Unknown crash")
+    #expect(unknown.title == String(localized: "Unknown crash"))
   }
 
   @Test func splitsLinesAcrossChunks() {

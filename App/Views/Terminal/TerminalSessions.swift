@@ -14,7 +14,10 @@ final class TerminalSessions {
   }
 
   func open(service: DeviceService) {
-    let session = TerminalSession(title: "Terminal \(nextNumber)", service: service)
+    let session = TerminalSession(title: String(localized: "Terminal \(nextNumber)"), service: service)
+    session.onExit = { [weak self, weak session] in
+      if let self, let session { close(session) }
+    }
     nextNumber += 1
     sessions.append(session)
     selectedID = session.id
@@ -22,8 +25,12 @@ final class TerminalSessions {
 
   func close(_ session: TerminalSession) {
     session.close()
-    sessions.removeAll { $0.id == session.id }
-    selectedID = sessions.last?.id
+    guard let index = sessions.firstIndex(where: { $0.id == session.id }) else { return }
+    sessions.remove(at: index)
+    // The terminal next to a closed one takes its place, as with tabs.
+    if selectedID == session.id {
+      selectedID = sessions.indices.contains(index) ? sessions[index].id : sessions.last?.id
+    }
   }
 
   func closeAll() {

@@ -106,9 +106,9 @@ enum IncompatibleReason: String, Hashable, Sendable {
 
   var message: String {
     switch self {
-    case .release: "Not compatible with this TV's webOS version."
-    case .soc: "Not compatible with this TV's processor."
-    case .root: "Requires a rooted TV."
+    case .release: String(localized: "Not compatible with this TV's webOS version.")
+    case .soc: String(localized: "Not compatible with this TV's processor.")
+    case .root: String(localized: "Requires a rooted TV.")
     }
   }
 }

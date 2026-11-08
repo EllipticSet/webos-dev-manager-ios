@@ -49,7 +49,7 @@ struct AppDetailView: View {
           let hasUpdate = manifest.hasUpdate(over: installed?.version)
           if installed == nil || hasUpdate {
             Button(
-              hasUpdate ? "Update" : "Install",
+              hasUpdate ? String(localized: "Update") : String(localized: "Install"),
               systemImage: hasUpdate ? "arrow.down" : "square.and.arrow.down"
             ) { install(manifest) }
             .disabled(!reasons.isEmpty)
@@ -74,15 +74,13 @@ struct AppDetailView: View {
     }
     .navigationTitle(title)
     .navigationBarTitleDisplayMode(.inline)
-    .confirmationDialog(
-      "Uninstall \(title)?", isPresented: $isConfirmingRemoval, titleVisibility: .visible
-    ) {
-      Button("Uninstall", role: .destructive) { uninstall() }
-    } message: {
-      if appID == InstalledApp.homebrewChannelID {
-        Text("You're about to remove Homebrew Channel. If the TV is rooted, you'll lose root immediately.")
-      }
-    }
+    .confirmationAlert(
+      "Uninstall \(title)?", isPresented: $isConfirmingRemoval,
+      message: appID == InstalledApp.homebrewChannelID
+        ? "You're about to remove Homebrew Channel. If the TV is rooted, you'll lose root immediately."
+        : nil,
+      actionTitle: "Uninstall", role: .destructive
+    ) { uninstall() }
   }
 
   private var header: some View {

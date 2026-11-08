@@ -15,11 +15,11 @@ enum AutoLockDelay: Int, CaseIterable, Identifiable {
 
   var title: String {
     switch self {
-    case .immediately: "Immediately"
-    case .oneMinute: "After 1 Minute"
-    case .fiveMinutes: "After 5 Minutes"
-    case .fifteenMinutes: "After 15 Minutes"
-    case .oneHour: "After 1 Hour"
+    case .immediately: String(localized: "Immediately")
+    case .oneMinute: String(localized: "After 1 Minute")
+    case .fiveMinutes: String(localized: "After 5 Minutes")
+    case .fifteenMinutes: String(localized: "After 15 Minutes")
+    case .oneHour: String(localized: "After 1 Hour")
     }
   }
 }
